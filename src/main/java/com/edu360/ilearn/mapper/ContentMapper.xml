@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu360.ilearn.mapper.ContentMapper">
+
+    <resultMap type="com.edu360.ilearn.entity.Content" id="content_result_map">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="duration" column="duration"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <select id="getVedioList" parameterType="Integer" resultType="content_result_map">
+        SELECT content.id,content.title,content.duration,content.state FROM content,course_content WHERE course_content.course_id = #{courseId} AND course_content.content_id=content.id
+    </select>
+
+    <select id="getVedio" parameterType="Integer" resultType="content_result_map">
+        SELECT * FROM content WHERE id = #{contentId}
+    </select>
+
+</mapper>

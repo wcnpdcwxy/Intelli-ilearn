@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu360.ilearn.mapper.CourseMapper">
+
+    <resultMap type="com.edu360.ilearn.entity.Course" id="course_result_map">
+        <id property="id" column="id"/>
+        <result property="courseName" column="course_name"/>
+        <result property="picAddr" column="pic_addr"/>
+        <result property="userId" column="user_id"/>
+        <result property="intro1" column="intro1"/>
+        <result property="intro2" column="intro2"/>
+        <result property="intro3" column="intro3"/>
+        <result property="mark" column="mark"/>
+        <result property="time" column="time"/>
+    </resultMap>
+
+    <select id="detail" parameterType="Integer" resultType="course_result_map">
+        SELECT * FROM course WHERE id = #{courseId}
+    </select>
+
+</mapper>
