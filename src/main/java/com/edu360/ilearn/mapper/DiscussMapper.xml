@@ -13,8 +13,8 @@
         <result property="time" column="time"/>
     </resultMap>
 
-    <select id="getDiscussList" parameterType="Integer" resultType="discuss_result_map">
-        SELECT * FROM content WHERE content_id = #{contentId}
+    <select id="getDiscussList" parameterType="Integer" resultMap="discuss_result_map">
+        SELECT * FROM discuss WHERE content_id = #{contentId}
     </select>
 
 </mapper>

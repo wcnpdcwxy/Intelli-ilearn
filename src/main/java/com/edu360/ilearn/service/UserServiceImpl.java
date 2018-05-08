@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findinfo(int userId) {
         User newUser = new User();
-        newUser = userMapper.find(userId);
+        newUser = userMapper.findinfo(userId);
         newUser.setPassword(null);
         return newUser;
     }

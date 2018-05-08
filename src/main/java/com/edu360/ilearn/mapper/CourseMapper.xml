@@ -17,7 +17,7 @@
         <result property="time" column="time"/>
     </resultMap>
 
-    <select id="detail" parameterType="Integer" resultType="course_result_map">
+    <select id="detail" parameterType="Integer" resultMap="course_result_map">
         SELECT * FROM course WHERE id = #{courseId}
     </select>
 

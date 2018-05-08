@@ -12,11 +12,11 @@
         <result property="state" column="state"/>
     </resultMap>
 
-    <select id="getVedioList" parameterType="Integer" resultType="content_result_map">
+    <select id="getVedioList" parameterType="Integer" resultMap="content_result_map">
         SELECT content.id,content.title,content.duration,content.state FROM content,course_content WHERE course_content.course_id = #{courseId} AND course_content.content_id=content.id
     </select>
 
-    <select id="getVedio" parameterType="Integer" resultType="content_result_map">
+    <select id="getVedio" parameterType="Integer" resultMap="content_result_map">
         SELECT * FROM content WHERE id = #{contentId}
     </select>
 
