@@ -8,34 +8,40 @@ public class TurnController {
     @RequestMapping("/toLogin")
     public String toLogin(){
         System.out.println(123);
-        return "login";
+        return "common/login";
+    }
+
+    @RequestMapping("/toRegister")
+    public String toRegister(){
+        System.out.println(123);
+        return "common/register";
     }
 
     @RequestMapping("/toIndex")
     public String toIndex(){
         System.out.println(123);
-        return "index";
+        return "common/index";
     }
 
-    @RequestMapping("/toTest")
-    public String toTest(){
-        System.out.println(123);
-        return "test";
-    }
+//    @RequestMapping("/toTest")
+//    public String toTest(){
+//        System.out.println(123);
+//        return "test";
+//    }
 
 
     @RequestMapping("/toTop")
     public String toTop(){
-        return "top";
+        return "common/top";
     }
 
-    @RequestMapping("/toNavigation")
-    public String toNavigation(){
-        return "navigation";
+    @RequestMapping("/toHome")
+    public String toHome(){
+        return "common/home";
     }
 
-    @RequestMapping("/toDynmsn")
-    public String toDynmsn(){
-        return "dynmsn";
+    @RequestMapping("/toBottom")
+    public String toBottom(){
+        return "common/bottom";
     }
 }

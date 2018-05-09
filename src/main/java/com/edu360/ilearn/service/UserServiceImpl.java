@@ -5,6 +5,8 @@ import com.edu360.ilearn.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -12,9 +14,13 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void register(User user) {
+    public int register(User user) {
         user.setStatus(1);
-        userMapper.register(user);
+        Random random = new Random(System.currentTimeMillis());
+        int cid = random.nextInt();
+        cid = cid>0?cid:(-1*cid);
+        user.setNickName("用户"+cid);
+        return userMapper.register(user);
     }
 
     @Override
@@ -24,13 +30,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean login(User user) {
-        boolean sign = false;
-        int res = userMapper.findOne(user);
-        if(res==1){
-            sign = true;
-        }
-        return sign;
+    public User login(User user) {
+        return userMapper.findOne(user);
     }
 
     @Override

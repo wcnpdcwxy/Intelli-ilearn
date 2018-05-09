@@ -1489,9 +1489,9 @@ ul.nav.nav-pills {
 @media(max-width:1366px){
 }
 @media(max-width:1280px){
-.navbar-nav > li > .mega-dropdown-menu {
-    left: -130%;
-}
+	.navbar-nav > li > .mega-dropdown-menu {
+		left: -130%;
+	}
 }
 @media(max-width:1220px){
 .h_menu4 {

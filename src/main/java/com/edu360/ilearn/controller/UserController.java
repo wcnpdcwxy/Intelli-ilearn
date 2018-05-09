@@ -17,10 +17,13 @@ public class UserController {
 //    注册
     @PostMapping("/register")
     @ResponseBody
-    public String register(User user){
+    public String register(User user,HttpSession session){
         //存mongodb
-        userService.register(user);
-        return "success";
+        if(userService.register(user)==1){
+            session.setAttribute("user",user);
+            return "success";
+        }
+        return "error";
     }
 
 //    修改密码
@@ -33,12 +36,11 @@ public class UserController {
     }
 
 //    登出
-    @PostMapping("/Logout")
-    @ResponseBody
-    public String Logout(User user){
-
-
-        return "success";
+    @GetMapping("/logOut")
+    public String Logout(HttpSession session){
+        System.out.println(999);
+        session.removeAttribute("user");
+        return "redirect:toIndex";
     }
 
 //    登陆
@@ -49,14 +51,14 @@ public class UserController {
         System.out.println(vo);
 
         User user = new User();
-        user.setUsername(vo.getUsername());
+        user.setUserName(vo.getUserName());
         user.setPassword(vo.getPassword());
-
-        if(userService.login(user)) {
-            session.setAttribute("user",user);
-            return "true";
+        User newUser = userService.login(user);
+        if(newUser!=null) {
+            session.setAttribute("user",newUser);
+            return "success";
         }else {
-            return "false";
+            return "error";
         }
     }
 

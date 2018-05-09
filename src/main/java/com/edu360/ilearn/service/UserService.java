@@ -4,11 +4,11 @@ import com.edu360.ilearn.entity.User;
 
 public interface UserService {
 
-    void register(User user);
+    int register(User user);
 
     void password(User user);
 
-    boolean login(User user);
+    User login(User user);
 
     User findinfo(int userId);
 }

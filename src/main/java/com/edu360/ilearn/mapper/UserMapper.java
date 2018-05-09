@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 
-    void register(User user);
+    int register(User user);
 
     void password(User user);
 
-    int findOne(User user);
+    User findOne(User user);
 
     User findinfo(int userId);
 }

@@ -9,9 +9,9 @@ import org.springframework.data.annotation.Id;
 public class User {
     @Id
     private int id;
-    private String username;
+    private String userName;
     private String password;
-    private String nickname;
+    private String nickName;
     private int stage;
     private String phoneNum;
     private int status;
@@ -24,12 +24,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -40,12 +40,12 @@ public class User {
         this.password = password;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public int getStage() {
@@ -76,9 +76,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
+                ", nickName='" + nickName + '\'' +
                 ", stage=" + stage +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", status=" + status +

@@ -3,11 +3,11 @@
 <html>
     <head>
         <title>课程详情页面</title>
-        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script src="../../js/jquery.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
     </head>
     <body>
     	<div class="container">
@@ -55,7 +55,7 @@
     		<!--下方展示区域-->
     		<div>
     			<frameset cols="*,*">
-					<frame src="menu.html">
+					<frame src="menu.jsp">
 					<frame src="main.html" name="main_frame">
 				</frameset> 
     		</div>

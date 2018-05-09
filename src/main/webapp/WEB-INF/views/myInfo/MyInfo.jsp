@@ -6,11 +6,11 @@
 		<title>个人信息页面</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="../../css/bootstrap.css" rel="stylesheet">
-		<link href="../../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../../css/bootstrap.css" rel="stylesheet">
+		<link href="../../../css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="../../css/main.css" rel="stylesheet">
+		<link href="../../../css/main.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -21,7 +21,7 @@
 				<!-- ===== vCard Navigation ===== -->
 				<div class="row w">
 					<div class="col-md-4">
-						<img class="img-responsive" src="../../images/avatar.jpg" alt="">
+						<img class="img-responsive" src="../../../images/avatar.jpg" alt="">
 						<ul class="nav nav-tabs nav-stacked" id="myTab">
 							<li class="active">
 								<a href="#about">个人信息</a>
@@ -52,12 +52,12 @@
 										<input type="password" class="form-control" id="exampleInputPassword1" placeholder="*******" readonly>
 									</div>
 									<div class="form-group">
-										<label for="exampleInputPassword1">昵称</label>
-										<input type="password" class="form-control" id="exampleInputPassword1" placeholder="${nickName}">
+										<label for="exampleInputPassword2">昵称</label>
+										<input type="password" class="form-control" id="exampleInputPassword2" placeholder="${nickName}">
 									</div>
 									<div class="form-group">
-										<label for="exampleInputPassword1">电话</label>
-										<input type="password" class="form-control" id="exampleInputPassword1" placeholder="${phoneNum}">
+										<label for="exampleInputPassword3">电话</label>
+										<input type="password" class="form-control" id="exampleInputPassword3" placeholder="${phoneNum}">
 									</div>
 									<!--记住密码-->
 									<!--<div class="checkbox">
@@ -125,9 +125,9 @@
 		</div>
 		<!-- /.container -->
 
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap.min.js"></script>
-		<script src="../../js/demoad.js"></script>
+		<script src="../../../js/jquery.js"></script>
+		<script src="../../../js/bootstrap.min.js"></script>
+		<script src="../../../js/demoad.js"></script>
 		<script>
 			$('#myTab a').click(function(e) {
 				e.preventDefault()

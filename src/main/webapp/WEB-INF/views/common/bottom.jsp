@@ -1,23 +1,28 @@
-<!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%
+	String path = request.getContextPath();
+	pageContext.setAttribute("ctx", path);
+%>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <html>
 	<head>
-		<head>
+
 		<title>Botton</title>
-		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<!-- Custom Theme files -->
 		<!--theme-style-->
-		<link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../../../css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<!--//theme-style-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!--theme-style-->
-		<link href="../../css/style4.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../../../css/style4.css" rel="stylesheet" type="text/css" media="all" />
 		<!--//theme-style-->
-		<script src="../../js/jquery.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
 		<!--- start-rate---->
-		<script src="../../js/jstarbox.js"></script>
-		<link rel="stylesheet" href="../../css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
-	</head>
+		<script src="../../../js/jstarbox.js"></script>
+		<link rel="stylesheet" href="../../../css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+
 	</head>
 	<body>
 
@@ -26,7 +31,7 @@
 			<div class="footer-middle">
 				<div class="container">
 					<div class="col-md-6 footer-middle-in">
-						<a href="index.html"><img src="../../images/logo2.png" alt=""></a>
+						<a href="index.html"><img src="../../../images/logo2.png" alt=""></a>
 						<p>It is our aim to provide all those who love learning with the resources they need.</p>
 					</div>
 
@@ -72,9 +77,9 @@
 		</div>
 		<!--//footer-->
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="../../js/simpleCart.min.js">
+		<script src="../../../js/simpleCart.min.js">
 		</script>
 		<!-- slide -->
-		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../../js/bootstrap.min.js"></script>
 	</body>
 </html>
