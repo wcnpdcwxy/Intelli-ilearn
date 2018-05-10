@@ -128,8 +128,10 @@
 					<div class="col-sm-3 search-right" style="background-color: white;height: 50px;">
 						<ul class="heart">
                             <li>
-                                <input type="text" placeholder="Search..">
-                                <a href=""><i class="glyphicon glyphicon-search"> </i></a>
+								<form id="searchAction">
+                                    <input type="text" name="searchContent" placeholder="Search..">
+                                    <a src="doSearch"><i class="glyphicon glyphicon-search"> </i></a>
+                                </form>
                             </li>
 							<li>
 								<a href="wishlist.html">

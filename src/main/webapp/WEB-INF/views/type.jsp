@@ -1,6 +1,10 @@
 <!--分类展示页面-->
-<!DOCTYPE html>
-<html>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%
+	String path = request.getContextPath();
+	pageContext.setAttribute("ctx", path);
+%>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>搜索页面</title>
         <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />

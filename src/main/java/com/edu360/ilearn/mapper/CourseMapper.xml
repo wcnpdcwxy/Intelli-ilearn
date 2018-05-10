@@ -21,4 +21,8 @@
         SELECT * FROM course WHERE id = #{courseId}
     </select>
 
+    <select id="doSearch" parameterType="String" resultMap="course_result_map">
+        SELECT * FROM course WHERE course_name LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+    </select>
+
 </mapper>

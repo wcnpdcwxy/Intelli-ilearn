@@ -84,11 +84,20 @@ public class Course {
         this.time = time;
     }
 
+    public String getPicAddr() {
+        return picAddr;
+    }
+
+    public void setPicAddr(String picAddr) {
+        this.picAddr = picAddr;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "id=" + id +
                 ", courseName='" + courseName + '\'' +
+                ", picAddr='" + picAddr + '\'' +
                 ", userId=" + userId +
                 ", intro1='" + intro1 + '\'' +
                 ", intro2='" + intro2 + '\'' +
