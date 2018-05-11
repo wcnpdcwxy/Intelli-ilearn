@@ -36,14 +36,14 @@ public class CourseController {
         session.removeAttribute("searchContent");
         session.setAttribute("searchContent",searchContent);
 
-
+        System.out.println("searchContent"+searchContent);
         List<Course> list = courseService.doSearch(searchContent);
+        PageVo pVo = new PageVo();
         if(list!=null){
-            PageVo pVo = new PageVo();
             pVo.setTotalList(list);
             pVo.setTotal_data_num(list.size());
-            session.setAttribute("pVo",pVo);
         }
+        session.setAttribute("pVo",pVo);
         return "redirect:toSearch";
     }
 }

@@ -1,7 +1,10 @@
 package com.edu360.ilearn.controller;
 
+import com.edu360.ilearn.Vo.PageVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class TurnController {
@@ -48,7 +51,18 @@ public class TurnController {
 
 
     @RequestMapping("/toSearch")
-    public String toSearch() {
+    public String toSearch(Integer pageNum, HttpSession session) {
+        System.out.println("pageNum"+pageNum);
+
+//        测试
+//        PageVo pVo_t = (PageVo) session.getAttribute("pVo");
+//        System.out.println(pVo_t);
+
+        if(pageNum!=null){
+            PageVo pVo = (PageVo) session.getAttribute("pVo");
+            pVo.setNow_page(pageNum);
+            session.setAttribute("pVo",pVo);
+        }
         return "search";
     }
 }

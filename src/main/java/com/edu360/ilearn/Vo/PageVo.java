@@ -22,6 +22,7 @@ public class PageVo {
 
     public void setTotalList(List<Course> totalList) {
         this.totalList = totalList;
+        setPageList();
     }
 
     public List<Course> getPageList() {
@@ -39,10 +40,8 @@ public class PageVo {
     }
 
     private void setTotal_page_num() {
-        if(total_data_num!=0){
-            total_page_num = PageHelper.totalPage(total_data_num,page_data_num);
-            setStart_end();
-        }
+        total_page_num = PageHelper.totalPage(total_data_num,page_data_num);
+        setStart_end();
     }
 
     public int[] getStart_end() {
@@ -62,6 +61,7 @@ public class PageVo {
     public void setNow_page(int now_page) {
         this.now_page = now_page;
         setStart_end();
+        setPageList();
     }
 
     public int getShow_page_Num() {
@@ -89,6 +89,7 @@ public class PageVo {
     public void setPage_data_num(int page_data_num) {
         this.page_data_num = page_data_num;
         setTotal_page_num();
+        setPageList();
     }
 
     @Override

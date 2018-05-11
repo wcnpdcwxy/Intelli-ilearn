@@ -5,6 +5,13 @@ import java.util.List;
 public class PageHelper {
     // 拿到第几页多少条数据
     public static List trunList(List list, int page, int pnum) {
+
+//        测试
+//        if(list==null){
+//            System.out.println("1.list is null");
+//        }
+
+
         int start = (page - 1) * pnum;
         int end = start + pnum;
         return trunListByStart(list,start,end);
@@ -13,6 +20,7 @@ public class PageHelper {
     // 取出自定义条数记录的list
     private static List trunListByStart(List list, int start, int end) {
         if (list == null){
+//            System.out.println("2.list is null");
             return null;
         }else if (list.size() > end){
             return list.subList(start, end);

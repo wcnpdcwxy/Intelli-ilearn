@@ -17,27 +17,47 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script src="../../js/jquery.min.js"></script>
     </head>
+    <style>
+        .corner{
+            width:40px;
+            height: 40px;
+            font-size: 15px;
+            background-color: white;
+            border-color: ghostwhite;
+        }
+        .active{
+            background-color: dodgerblue;
+        }
+        .corner a{
+            color: mediumblue;
+        }
+        .active a{
+            color: white;
+        }
+    </style>
     <script>
 //  异步请求方法1  保存（request？session）一个list数据 包含一组实体类对象
 
 //  异步请求方法2 含参数  保存（request？session）一个list数据 包含一组已排序的实体类对象
     
     </script>
-    <body>
-    	<div class="container">
+    <body style="background-color: whitesmoke">
+    	<div class="container" style="height: 1000px;">
     		<!--搜索参数设置-->
-    		<div>
+    		<div style="height: 7%;margin-top: 20px;border-bottom: groove;border-color: whitesmoke">
 	    		<!--搜索栏-->
-	    		<div>
-	    			<form>
-	    				<input type="text" name="searchin" id="searchin" value="${searchContent}"/>
-	    				<!--保存（request？session）一个字符串（搜索内容）数据-->
-	    				<!--提交异步请求1-->
-	    				<button value="搜索" accesskey="Enter" onclick=""></button>
-	    			</form>
+	    		<div style="height: 40px;">
+                    <center>
+                        <form>
+                            <input type="text" name="searchContent" id="searchContent" value="${searchContent}" style="height: 40px;width: 500px;"/>
+                            <!--保存（request？session）一个字符串（搜索内容）数据-->
+                            <!--提交异步请求1-->
+                            <button value="搜索" accesskey="Enter" onclick="" style="width: 60px;height: 40px;background-color: #00BFF0;border: none;">搜索</button>
+                        </form>
+                    </center>
 	    		</div>
 	    		<!--排序方式-->
-	    		<div>
+	    		<div style="float: right;margin-right: 10px">
 	    			时间：
 	    			<!--异步请求2参数1-->
 	    			<a onclick="">
@@ -54,69 +74,72 @@
 	    		</div>
     		</div>
     		<!--搜索结果显示-->
-    		<div>
-    			<!--循环提取list中的实体类并在div中显示-->
-                <c:forEach items="${pVo.pageList}" var="course" varStatus="status">
-                    <div style="width: 16%;height: 150px;margin-left: 2%;margin-right: 2%">
-                        <div style="width: 100%;height: 50%">
-                            <img src="${course.picAddr}" height="" width=""/>
-                        </div>
-                        <div style="width: 100%;height: 50%">
-                            <div style="width: 100%;height: 50%">
-                                <h5>${course.courseName}</h5><br>
-                                <%--nickName没有做，暂时用id代替--%>
-                                <h6>${course.userId}</h6>
+    		<div style="height: 93%">
+    			<div style="height: 400px;padding-top: 15px;height: 92%">
+                    <!--循环提取list中的实体类并在div中显示-->
+                    <c:forEach items="${pVo.pageList}" var="course" varStatus="status">
+                        <div style="width: 16%;height: 271px;margin-top: 15px;margin-left: 2%;margin-right: 2%;background-color: white">
+                            <div style="width: 100%;height: 40%">
+                                <img src="${course.picAddr}" height="" width="100%"/>
                             </div>
-                            <div style="width: 100%;height: 50%">
-                                <%--打分插件没做，展示显示分数--%>
-                                <h6>${course.mark}</h6><br>
-                                 <%--积分购买制度没有实行，暂无内容--%>
-                                <h5>免费</h5>
+                            <div style="width: 100%;height: 60%; padding: 10px;">
+                                <div style="width: 100%;height: 40%;margin-top: 8px">
+                                    <h5>${course.courseName}</h5>
+                                        <%--nickName没有做，暂时用id代替--%>
+                                    <h6>${course.userId}</h6>
+                                </div>
+                                <div style="width: 100%;height: 60%;padding-top: 5px">
+                                    <%--打分插件没做，展示显示分数--%>
+                                    <div style="padding-bottom: 1px">
+                                        <h6>${course.mark}</h6>
+                                    </div>
+                                    <%--积分购买制度没有实行，暂无内容--%>
+                                    <div>
+                                        <h5>免费</h5>
+                                    </div>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-
-
-                </c:forEach>
-
+                    </c:forEach>
+                </div>
 				<%--分页--%>
-                <a href="javascript:go(<%=pVo.getNow_page()-1%>)" class="a1">上一页</a>
-                <%
-                    int se[] = pVo.getStart_end();
-                    if(se[0]>1){
-                        out.print(" ...");
-                    }
-                    for(int pi=se[0];pi<=se[1];pi++){
-                        if(pi==pVo.getNow_page()){
-                            out.print("　<a href='javascript:;' class='se'>"+pi+"</a>");
-                        }else{
-                            out.print("　<a href='javascript:go("+pi+")'>"+pi+"</a>");
-                        }
-                    }
-                    if(pVo.getTotal_page_num()>se[1]){
-                        out.print("  ... ");
-                    }
-                %>　
-                <a href="javascript:go(<%=pVo.getNow_page()+1%>)" class="a2">下一页</a>
+                <center>
+                    <div style="height: 8%">
+                        <button class="corner"><a href="javascript:go(<%=pVo.getNow_page()-1%>)"><---</a></button>
+                        <%
+                            int se[] = pVo.getStart_end();
+                            if(se[0]>1){
+                                out.print(" <button class='corner'>...</button>");
+                            }
+                            for(int pi=se[0];pi<=se[1];pi++){
+                                if(pi==pVo.getNow_page()){
+                                    out.print("　<button class='corner active'><a href='javascript:;'>"+pi+"</a></button>");
+                                }else{
+                                    out.print("　<button class='corner'><a href='javascript:go("+pi+")'>"+pi+"</a></button>");
+                                }
+                            }
+                            if(pVo.getTotal_page_num()>se[1]){
+                                out.print("  <button class='corner'>...</button> ");
+                            }
+                        %>　
+                        <button class="corner"><a href="javascript:go(<%=pVo.getNow_page()+1%>)">---></a></button>
+                    </div>
+                </center>
                 <script type="text/javascript">
-                    function go(page){
-                        if(page<1){
+                    function go(pageNum){
+                        if(pageNum<1){
                             alert("已到首页");
                             return;
                         }
-                        if(page><%=pVo.getTotal_page_num()%>){
+                        if(pageNum><%=pVo.getTotal_page_num()%>){
                             alert("已到尾页");
                             return;
                         }
-                        if(page==<%=pVo.getNow_page()%>){
+                        if(pageNum==<%=pVo.getNow_page()%>){
                             return;
                         }
-                        <%
-                            pVo.setNow_page((int)page);
-                            session.setAttribute("pVo",pVo);
-                        %>
-                        var url = "toSearch";
+                        var url = "/toSearch?pageNum="+pageNum;
                         location.href = url;
                     }
                 </script>

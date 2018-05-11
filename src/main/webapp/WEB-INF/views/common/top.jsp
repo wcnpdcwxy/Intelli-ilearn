@@ -26,6 +26,10 @@
                 $('#login_btn').click(function() {
                     window.parent.abc();
                 });
+                $('#search_btn').click(function() {
+//                  怎么在第二个frame页面展示？
+                    document.getElementsByName("searchAction")[0].submit();
+                });
 <%
     User user = new User();
 	if(session.getAttribute("user")!=null){
@@ -128,9 +132,9 @@
 					<div class="col-sm-3 search-right" style="background-color: white;height: 50px;">
 						<ul class="heart">
                             <li>
-								<form id="searchAction">
+								<form name="searchAction" action="/doSearch" method="get">
                                     <input type="text" name="searchContent" placeholder="Search..">
-                                    <a src="doSearch"><i class="glyphicon glyphicon-search"> </i></a>
+                                    <a id="search_btn" onclick="search()" target="home"><i class="glyphicon glyphicon-search"> </i></a>
                                 </form>
                             </li>
 							<li>
