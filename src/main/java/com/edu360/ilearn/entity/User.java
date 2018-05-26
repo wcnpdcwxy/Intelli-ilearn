@@ -2,6 +2,8 @@ package com.edu360.ilearn.entity;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Date;
+
 //import org.springframework.data.mongodb.core.mapping.Document;
 
 //@Document(collection = "user")
@@ -15,6 +17,15 @@ public class User {
     private int stage;
     private String phoneNum;
     private int status;
+    private String oriDate;
+
+    public String getOriDate() {
+        return oriDate;
+    }
+
+    public void setOriDate(String oriDate) {
+        this.oriDate = oriDate;
+    }
 
     public int getId() {
         return id;
@@ -82,6 +93,7 @@ public class User {
                 ", stage=" + stage +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", status=" + status +
+                ", oriDate=" + oriDate +
                 '}';
     }
 }

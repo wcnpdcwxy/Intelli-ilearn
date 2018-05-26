@@ -1,12 +1,18 @@
 package com.edu360.ilearn.controller;
 
+import com.edu360.ilearn.Tool.CreateLog;
+import com.edu360.ilearn.Tool.HttpPostUtil;
+import com.edu360.ilearn.Tool.TimeUtil;
 import com.edu360.ilearn.Vo.LoginVo;
 import com.edu360.ilearn.entity.User;
 import com.edu360.ilearn.service.UserService;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class UserController {
@@ -54,8 +60,11 @@ public class UserController {
         user.setUserName(vo.getUserName());
         user.setPassword(vo.getPassword());
         User newUser = userService.login(user);
+
+        String info = "{\"time\":\""+ TimeUtil.getTime("long")+"\",\"userId\":\""+newUser.getId()+"\",\"userName\":\""+newUser.getUserName()+"\"}";
         if(newUser!=null) {
             session.setAttribute("user",newUser);
+            HttpPostUtil.sendLog(info,"recharge");
             return "success";
         }else {
             return "error";
@@ -68,6 +77,49 @@ public class UserController {
     public User findinfo(int userId,HttpSession session){
         User user = userService.findinfo(userId);
         return user;
+    }
+
+
+    //生成登陆日志数据
+    @GetMapping("/createUserLog")
+    @ResponseBody
+    public String createUserLog(){
+        ArrayList<User> list = userService.findAll();
+        //流失用户
+        int[] indexs = CreateLog.loseUser(list);
+        for(int i = 0;i<indexs.length;i++){
+            User user = list.get(indexs[i]);
+            user.setStatus(2);//流失用户
+            userService.updateUser(user);
+        }
+
+        //造数据
+        CreateLog.createUserLog("2018-05-10",list);
+        return "success";
+    }
+
+    //生成用户网页跳转数据
+    @GetMapping("/createUserPathLog")
+    @ResponseBody
+    public String createUserPathLog(HttpSession session){
+        ArrayList<User> list = userService.findAll();
+        //造数据
+        CreateLog.doPathLog("2018-05-10",list,session);
+        return "success";
+    }
+
+    //生成用户
+    @GetMapping("/insertUser")
+    @ResponseBody
+    public String insertUser(){
+        ArrayList<User> list = CreateLog.insertUser("2018-05-09",124);
+        if(list!=null){
+            for(int i =0;i<list.size();i++){
+                User user = list.get(i);
+                userService.register(user);
+            }
+        }
+        return "success";
     }
 
 }

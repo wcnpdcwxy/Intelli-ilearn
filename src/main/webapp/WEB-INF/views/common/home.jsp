@@ -43,14 +43,20 @@
 			<div id="container2" style="width: 100%; height: 50px; background: #E0E0E0; margin:auto; float:left">
 				<div id="examplee" align="middle">
 					<a>
-						<div id="img1" style="background-color:lightskyblue; height: 50px;width: 20%; float:left;">sdfsafsdf</div>
+						<div id="img1" style="background-color:lightskyblue; height: 50px;width: 20%; float:left;">音乐特辑</div>
 					</a>
 					<a>
-						<div id="img2" style="background-color:pink; height: 50px;width: 20%; float:left;">wefawefsf</div>
+						<div id="img2" style="background-color:pink; height: 50px;width: 20%; float:left;">5月好课精选</div>
 					</a>
 					<a>
-						<div id="img3" style="background-color:pink; height: 50px;width: 20%; float:left;">qwegsafs</div>
+						<div id="img3" style="background-color:pink; height: 50px;width: 20%; float:left;">学摄影，就现在</div>
 					</a>
+                    <a>
+                        <div id="img4" style="background-color:pink; height: 50px;width: 20%; float:left;">产品方法论</div>
+                    </a>
+                    <a>
+                        <div id="img5" style="background-color:pink; height: 50px;width: 20%; float:left;">六一专题</div>
+                    </a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -79,13 +85,19 @@
 							src: '../../images/ch.jpg',
 						},
 						{
-							src: '../../images/ch1.jpg',
+							src: '../../images/ch1.png',
 						},
 						{
-							src: '../../images/ch2.jpg',
+							src: '../../images/ch2.png',
 						},
+                        {
+                            src: '../../images/ch3.png',
+                        },
+                        {
+                            src: '../../images/ch4.png',
+                        },
 					],
-					imageSize: 'contain',
+					imageSize: 'cover',
 					container: '#container1',
 				}).data('chocolat');
 				instance.api().open(0)
@@ -101,7 +113,14 @@
 					index = 2;
 					rush_one(index)
 				})
-
+                $('#img4').on('click', function(e) {
+                    index = 3;
+                    rush_one(index)
+                })
+                $('#img5').on('click', function(e) {
+                    index = 4;
+                    rush_one(index)
+                })
 				$('#right_img').on('click', function(e) {
 					var def = instance.api().next()
 

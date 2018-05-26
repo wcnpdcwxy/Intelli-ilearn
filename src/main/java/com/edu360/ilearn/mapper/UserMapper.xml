@@ -13,6 +13,7 @@
         <result property="stage" column="stage"/>
         <result property="phoneNum" column="phone_num"/>
         <result property="status" column="status"/>
+        <result property="ori_date" column="oriDate"/>
     </resultMap>
 
     <select id="findOne" parameterType="com.edu360.ilearn.entity.User" resultMap="user_result_map">
@@ -20,7 +21,7 @@
     </select>
 
     <insert id="register" parameterType="com.edu360.ilearn.entity.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user (id, username, password, nickname, stage, phone_num, status) VALUES (null, #{userName}, #{password}, #{nickName}, #{stage}, #{phoneNum}, #{status})
+        INSERT INTO user (id, username, password, nickname, stage, phone_num, status, ori_date) VALUES (null, #{userName}, #{password}, #{nickName}, #{stage}, #{phoneNum}, #{status}, #{oriDate})
     </insert>
 
     <update id="password" parameterType="com.edu360.ilearn.entity.User">
@@ -31,4 +32,11 @@
         SELECT * FROM user WHERE id = #{userId}
     </select>
 
+    <select id="findAll" resultMap="user_result_map">
+        SELECT * FROM user
+    </select>
+
+    <update id="updateUser" parameterType="com.edu360.ilearn.entity.User">
+        UPDATE user SET status = #{status} WHERE id = #{id}
+    </update>
 </mapper>
