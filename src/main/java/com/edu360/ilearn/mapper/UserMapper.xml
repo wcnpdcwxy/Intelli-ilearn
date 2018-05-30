@@ -33,7 +33,7 @@
     </select>
 
     <select id="findAll" resultMap="user_result_map">
-        SELECT * FROM user
+        SELECT * FROM user WHERE status = 1
     </select>
 
     <update id="updateUser" parameterType="com.edu360.ilearn.entity.User">

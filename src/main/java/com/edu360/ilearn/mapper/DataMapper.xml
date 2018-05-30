@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu360.ilearn.mapper.DataMapper">
+
+    <resultMap type="com.edu360.ilearn.entity.pNum" id="pnum_result_map">
+        <result property="date" column="date"/>
+        <result property="activePnum" column="active_pnum"/>
+        <result property="newPnum" column="new_pnum"/>
+        <result property="keepPnum1" column="keep_pnum_1"/>
+        <result property="keepPnum2" column="keep_pnum_2"/>
+        <result property="keepPnum3" column="keep_pnum_3"/>
+        <result property="keepPnum4" column="keep_pnum_4"/>
+        <result property="keepPnum5" column="keep_pnum_5"/>
+        <result property="keepPnum6" column="keep_pnum_6"/>
+        <result property="keepPnum7" column="keep_pnum_7"/>
+        <result property="keepPnum8" column="keep_pnum_8"/>
+        <result property="keepPnum9" column="keep_pnum_9"/>
+        <result property="keepPnum10" column="keep_pnum_10"/>
+        <result property="keepPnum11" column="keep_pnum_11"/>
+        <result property="keepPnum12" column="keep_pnum_12"/>
+        <result property="keepPnum13" column="keep_pnum_13"/>
+        <result property="keepPnum14" column="keep_pnum_14"/>
+        <result property="keepPnum15" column="keep_pnum_15"/>
+        <result property="keepPnum16" column="keep_pnum_16"/>
+        <result property="keepPnum17" column="keep_pnum_17"/>
+        <result property="keepPnum18" column="keep_pnum_18"/>
+        <result property="keepPnum19" column="keep_pnum_19"/>
+        <result property="keepPnum20" column="keep_pnum_20"/>
+        <result property="keepPnum21" column="keep_pnum_21"/>
+        <result property="keepPnum22" column="keep_pnum_22"/>
+        <result property="keepPnum23" column="keep_pnum_23"/>
+        <result property="keepPnum24" column="keep_pnum_24"/>
+        <result property="keepPnum25" column="keep_pnum_25"/>
+        <result property="keepPnum26" column="keep_pnum_26"/>
+        <result property="keepPnum27" column="keep_pnum_27"/>
+        <result property="keepPnum28" column="keep_pnum_28"/>
+        <result property="keepPnum29" column="keep_pnum_29"/>
+        <result property="keepPnum30" column="keep_pnum_30"/>
+    </resultMap>
+
+    <resultMap type="com.edu360.ilearn.entity.bounceRate" id="bounceRate_result_map">
+        <result property="date" column="date"/>
+        <result property="alonePath" column="alone_path"/>
+        <result property="totalPath" column="total_path"/>
+    </resultMap>
+
+    <resultMap type="com.edu360.ilearn.entity.pathTable" id="pathTable_result_map">
+        <result property="ip" column="ip"/>
+        <result property="userId" column="userId"/>
+        <result property="userName" column="userName"/>
+        <result property="earlyTime" column="early_time"/>
+        <result property="longTime" column="longtime"/>
+        <result property="longTimePath" column="longtime_path"/>
+        <result property="lastTime" column="last_time"/>
+        <result property="lastPath" column="last_path"/>
+        <result property="pathCount" column="path_count"/>
+    </resultMap>
+
+    <select id="getPnum" resultMap="pnum_result_map">
+        SELECT * FROM pnum_05
+    </select>
+
+    <select id="getBounceRate" resultMap="bounceRate_result_map">
+        SELECT * FROM bounce_rate
+    </select>
+
+    <select id="getPathTable" parameterType="String" resultMap="pathTable_result_map">
+        SELECT * FROM path_table_05_06 where last_time like CONCAT(CONCAT('%', #{date}), '%')
+    </select>
+
+</mapper>

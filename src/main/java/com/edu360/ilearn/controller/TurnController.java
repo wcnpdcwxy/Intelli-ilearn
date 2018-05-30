@@ -3,6 +3,7 @@ package com.edu360.ilearn.controller;
 import com.edu360.ilearn.Tool.CreateLog;
 import com.edu360.ilearn.Tool.HttpPostUtil;
 import com.edu360.ilearn.Vo.PageVo;
+import com.edu360.ilearn.entity.pathTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class TurnController {
@@ -60,6 +62,11 @@ public class TurnController {
     }
 
 
+    @RequestMapping("/toEcharts")
+    public String toEcharts() {
+        return "common/echarts";
+    }
+
 
     @RequestMapping("/toSearch")
     public String toSearch(Integer pageNum, HttpSession session,HttpServletRequest request) {
@@ -75,5 +82,19 @@ public class TurnController {
             session.setAttribute("pVo",pVo);
         }
         return "search";
+    }
+
+
+    //跳转table页
+    @RequestMapping("/toTable")
+    public String toTable(Integer pageNum, HttpSession session){
+
+        if(pageNum!=null){
+            PageVo pVo = (PageVo) session.getAttribute("pVo");
+            pVo.setNow_page(pageNum);
+            session.setAttribute("pVo",pVo);
+        }
+
+        return "common/table";
     }
 }

@@ -6,9 +6,9 @@ import com.edu360.ilearn.entity.Course;
 import java.util.Arrays;
 import java.util.List;
 
-public class PageVo {
-    private List<Course> totalList;
-    private List<Course> pageList;
+public class PageVo <T>{
+    private List<T> totalList;
+    private List<T> pageList;
     private int total_page_num = 0;
     private int[] start_end;
     private int now_page = 1;
@@ -16,16 +16,16 @@ public class PageVo {
     private int total_data_num = 0;
     private int page_data_num = 16;
 
-    public List<Course> getTotalList() {
+    public List<T> getTotalList() {
         return totalList;
     }
 
-    public void setTotalList(List<Course> totalList) {
+    public void setTotalList(List<T> totalList) {
         this.totalList = totalList;
         setPageList();
     }
 
-    public List<Course> getPageList() {
+    public List<T> getPageList() {
         return pageList;
     }
 

@@ -94,17 +94,7 @@ public class UserController {
         }
 
         //造数据
-        CreateLog.createUserLog("2018-05-10",list);
-        return "success";
-    }
-
-    //生成用户网页跳转数据
-    @GetMapping("/createUserPathLog")
-    @ResponseBody
-    public String createUserPathLog(HttpSession session){
-        ArrayList<User> list = userService.findAll();
-        //造数据
-        CreateLog.doPathLog("2018-05-10",list,session);
+        CreateLog.createUserLog("2018-05-07",list);
         return "success";
     }
 
@@ -112,13 +102,24 @@ public class UserController {
     @GetMapping("/insertUser")
     @ResponseBody
     public String insertUser(){
-        ArrayList<User> list = CreateLog.insertUser("2018-05-09",124);
+        ArrayList<User> list = CreateLog.insertUser("2018-05-07",11314);
         if(list!=null){
             for(int i =0;i<list.size();i++){
                 User user = list.get(i);
                 userService.register(user);
             }
         }
+        return "success";
+    }
+
+
+    //生成用户网页跳转数据
+    @GetMapping("/createUserPathLog")
+    @ResponseBody
+    public String createUserPathLog(HttpSession session){
+        ArrayList<User> list = userService.findAll();
+        //造数据
+        CreateLog.doPathLog("2018-05-06",list,session);
         return "success";
     }
 

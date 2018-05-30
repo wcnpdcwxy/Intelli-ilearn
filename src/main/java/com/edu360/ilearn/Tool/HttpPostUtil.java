@@ -18,6 +18,9 @@ import org.apache.http.protocol.HTTP;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.temporal.ValueRange;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
 public class HttpPostUtil {
@@ -103,9 +106,103 @@ public class HttpPostUtil {
             datetime = TimeUtil.getTime("long");
         }
 
+
         //拼串
         String line = "{\"ip\":\""+ip+"\",\"userId\":\""+userId+"\",\"userName\":\""+userName+"\",\"time\":\""+datetime+"\",\"path\":\""+path+"\"}";
 
         sendLog(line,"userpath");
+
+//        if((int)(Math.random()*5)==4){
+//            return;
+//        }
+
+        String[] split1 = datetime.split(" ");
+        String date = split1[0];
+        String time = split1[1];
+
+        String[] strings = time.split(":");
+        String hour = strings[0];
+        String minute = strings[1];
+        String second = strings[2];
+
+        ArrayList<String> arr = new ArrayList<>();
+        arr = getPaths(arr);
+        ListIterator<String> iterator = arr.listIterator();
+        int affordtime = (int) (5 + Math.random() * 55);
+        while (iterator.hasNext()){
+            String s = iterator.next();
+            String[] split = s.split(" ");
+            path = split[0];
+
+
+            int affordminute = affordtime/60;
+            int affordsecond = affordtime%60;
+            int newminute = Integer.parseInt(minute) + affordminute;
+            int newsecond = Integer.parseInt(second) + affordsecond;
+            int newhour = Integer.parseInt(hour);
+            if(newsecond>=60){
+                newminute = newminute + newsecond/60;
+                newsecond = newsecond % 60;
+            }
+            if(newminute>=60){
+                newhour = newhour + newminute/60;
+                newminute = newminute % 60;
+            }
+            if(newhour>=24){
+                break;
+            }
+            hour = newhour>=10?""+newhour:"0"+newhour;
+            minute = newminute>=10?""+newminute:"0"+newminute;
+            second = newsecond>=10?""+newsecond:"0"+newsecond;
+            time = ""+hour+":"+minute+":"+second;
+            datetime = date+" "+time;
+
+
+            //拼串
+            line = "{\"ip\":\""+ip+"\",\"userId\":\""+userId+"\",\"userName\":\""+userName+"\",\"time\":\""+datetime+"\",\"path\":\""+path+"\"}";
+
+            sendLog(line,"userpath");
+
+            affordtime = Integer.parseInt(split[1]);
+        }
+
+
+
+    }
+
+
+    public static ArrayList<String> getPaths(ArrayList<String> list){
+        if(list.size()>=6){
+            return list;
+        }
+        int random1 = (int)(Math.random()*2);
+        if(random1==1){
+            String path = "";
+            int random2 = (int)(1+Math.random()*10);
+            int random3 = 0;
+            if(random2<3){
+                path = "/index";
+                random3 = (int)(5+Math.random()*55);
+            }else if(random2<5){
+                path = "/search";
+                random3 = (int)(60+Math.random()*240);
+            }else if(random2<8){
+                path = "/watch";
+                random3 = (int)(600+Math.random()*1200);
+            }else if(random2<9){
+                path = "/login";
+                random3 = (int)(10+Math.random()*20);
+            }else if(random2<10){
+                path = "/register";
+                random3 = (int)(120+Math.random()*60);
+            }else if(random2<11){
+                path = "/home";
+                random3 = (int)(5+Math.random()*55);
+            }
+            String line = path +" "+ random3;
+            list.add(line);
+            return getPaths(list);
+        }
+        return list;
     }
 }

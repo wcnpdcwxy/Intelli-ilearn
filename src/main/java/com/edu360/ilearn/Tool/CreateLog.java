@@ -43,13 +43,21 @@ public class CreateLog {
         //计数器
         int count = 1;
         //同时登陆人数
-        int times = userNum/10*9/1440;
+        int times = userNum/100;
+        System.out.println("times"+times);
+
+        String[] split = date.split("-");
+        int bcount = Integer.parseInt(split[2]);
+
         User newUser = null;
+        int total =0;
         //计时一分钟造数据
-        while(System.currentTimeMillis()-startTime<60000){//600000
+//        while(System.currentTimeMillis()-startTime<300000){//600000
             while(count<=1440){
-                if(System.currentTimeMillis()-startTime>count*40){//400
-                    int random1 = (int)(Math.random()*times);
+                if(System.currentTimeMillis()-startTime>count*300){//400
+                    int random1 = (int)(1+Math.random()*times);
+                    total+=random1;
+                    System.out.println(random1);
                     for(int i = 0;i<random1;i++){
                         String hour = count/60>=10?""+count/60:"0"+count/60;
                         String minute = count%60>=10?""+count%60:"0"+count%60;
@@ -69,8 +77,8 @@ public class CreateLog {
                     count++;
                 }
             }
-        }
-
+//        }
+        System.out.println("total"+total);
     }
 
     //制造用户
@@ -121,7 +129,7 @@ public class CreateLog {
     }
 
 
-    public static void doPathLog(String date,ArrayList<User> list,HttpSession session){
+    public static void doPathLog(String date,ArrayList<User> list,HttpSession session) {
         //生产数据，类似userLog
         //用户人数
         int userNum = list.size();
@@ -130,55 +138,41 @@ public class CreateLog {
         //计数器
         int count = 1;
         //同时登陆人数
-        int times = userNum/10*9/1440;
+        int times = 40;
         User newUser = null;
         //计时一分钟造数据
-        while(System.currentTimeMillis()-startTime<60000){//600000
-            while(count<=1440){
-                if(System.currentTimeMillis()-startTime>count*40){//400
-                    int random1 = (int)(Math.random()*times);
-                    for(int i = 0;i<random1;i++){
-                        String hour = count/60>=10?""+count/60:"0"+count/60;
-                        String minute = count%60>=10?""+count%60:"0"+count%60;
-                        int random2 = (int)(Math.random()*60);
-                        String second = random2>=10?""+random2:"0"+random2;
+//        while(System.currentTimeMillis()-startTime<300000){//600000
+        while (count <= 1440) {
+            if (System.currentTimeMillis() - startTime > count * 200) {//400
+                int random1 = (int) (Math.random() * times);
+                for (int i = 0; i < random1; i++) {
+                    String hour = count / 60 >= 10 ? "" + count / 60 : "0" + count / 60;
+                    String minute = count % 60 >= 10 ? "" + count % 60 : "0" + count % 60;
+                    int random2 = (int) (Math.random() * 60);
+                    String second = random2 >= 10 ? "" + random2 : "0" + random2;
 
-                        int random3 = (int)(Math.random()*userNum);
-                        newUser = list.get(random3);
-                        if(newUser.getStatus()!=1){
-                            break;
-                        }
+                    int random3 = (int) (Math.random() * userNum);
+                    newUser = list.get(random3);
 
-                        session.setAttribute("user",newUser);
 
-                        String time = ""+hour+":"+minute+":"+second;
-                        String datetime = date+time;
+                    session.setAttribute("user", newUser);
 
-                        String path = "";
-                        int random4 = (int)(1+Math.random()*10);
-                        if(random4<4){
-                            path = "/index";
-                        }else if(random4<6){
-                            path = "/search";
-                        }else if(random4<8){
-                            path = "/watch";
-                        }else if(random4<9){
-                            path = "/login";
-                        }else if(random4<10){
-                            path = "/register";
-                        }else if(random4<11){
-                            path = "/home";
-                        }
-                        HttpPostUtil.pathLog(null,session,path,datetime);
-                    }
-                    //////////////////////////////////////////////////////////////////////////
-                    //相同用户有相同的ip，建个String[userNum]
-                    //时间修改问题，不能10分钟发24小时，最多2小时
-                    //用户访问的连贯问题，random判定继续或退出，继续着random下一网页
-                    //弹出率问题，特定的ip或用户被弹出当日不再访问
-                    count++;
+                    String time = "" + hour + ":" + minute + ":" + second;
+                    String datetime = date + " " + time;
+
+                    HttpPostUtil.pathLog(null, session, "/index", datetime);
                 }
+                //////////////////////////////////////////////////////////////////////////
+                //相同用户有相同的ip，建个String[userNum]或者hashmap或者√一次性完成所有跳转
+                //时间修改问题，不能10分钟发24小时，最多2小时?
+                //√用户访问的连贯问题，random判定继续或退出，继续着random下一网页
+                //√弹出率问题，特定的ip或用户被弹出当日不再访问
+                count++;
             }
         }
+    //    }
     }
+
+
+
 }
