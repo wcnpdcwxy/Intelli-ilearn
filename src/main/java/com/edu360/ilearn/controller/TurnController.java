@@ -2,6 +2,7 @@ package com.edu360.ilearn.controller;
 
 import com.edu360.ilearn.Tool.CreateLog;
 import com.edu360.ilearn.Tool.HttpPostUtil;
+import com.edu360.ilearn.Vo.CourseVo;
 import com.edu360.ilearn.Vo.PageVo;
 import com.edu360.ilearn.entity.pathTable;
 import org.springframework.stereotype.Controller;
@@ -96,5 +97,32 @@ public class TurnController {
         }
 
         return "common/table";
+    }
+
+    @RequestMapping("/toIntro")
+    public String toIntro() {
+        return "content/intro";
+    }
+
+    @RequestMapping("/toVedioMenu")
+    public String toVedioMenu() {
+        return "content/vedioMenu";
+    }
+
+    @RequestMapping("/toWatch")
+    public String toWatch() {
+        return "course/watch";
+    }
+
+    @RequestMapping("/toType")
+    public String toType(Integer pageNum, HttpSession session) {
+        System.out.println("pageNum"+pageNum);
+
+        if(pageNum!=null){
+            PageVo pVo = (PageVo) session.getAttribute("pVo");
+            pVo.setNow_page(pageNum);
+            session.setAttribute("pVo",pVo);
+        }
+        return "type";
     }
 }

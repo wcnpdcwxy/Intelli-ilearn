@@ -12,4 +12,5 @@ public interface CourseService {
 
     List<Course> doSearch(String searchContent);
 
+    List<Course> doType(String type);
 }

@@ -6,9 +6,11 @@ public class Content {
 //    视频标题
     private String title;
 //    视频时长 duration/100:duration%100
-    private int duration;
+    private String duration;
 //    视频学习状况 (是否学过)
-    private double state;
+    private int state;
+
+    private String vdAddr;
 
     public int getId() {
         return id;
@@ -26,20 +28,28 @@ public class Content {
         this.title = title;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public double getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(double state) {
+    public void setState(int state) {
         this.state = state;
+    }
+
+    public String getVdAddr() {
+        return vdAddr;
+    }
+
+    public void setVdAddr(String vdAddr) {
+        this.vdAddr = vdAddr;
     }
 
     @Override
@@ -49,6 +59,7 @@ public class Content {
                 ", title='" + title + '\'' +
                 ", duration=" + duration +
                 ", state=" + state +
+                ", vdAddr='" + vdAddr + '\'' +
                 '}';
     }
 }

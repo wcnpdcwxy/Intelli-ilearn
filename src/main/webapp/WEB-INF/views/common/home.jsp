@@ -25,7 +25,6 @@
 		<link rel="stylesheet" href="../../../css/chocolat.css" type="text/css" media="screen" charset="utf-8">
 		<!--light-box-files -->
 	</head>
-
 	<body style="background-color: antiquewhite;">
 		<!-- Container (notice the relative width) :  -->
 		<div class="container">

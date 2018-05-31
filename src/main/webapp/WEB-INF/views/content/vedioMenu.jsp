@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>视频目录页面</title>
         <link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -11,31 +11,38 @@
     </head>
     <body>
     	<table class="table table-condensed">
-    		<c:forEach items="${list}" var="vd" varStatus="status">
-				<tr>
-					<td>
-						课时${status.count}
-					</td>
-					<td>
-						${vd.title}
-					</td>
-					<td></td>
-					<td></td>
-					<td>
-						${vd.duration}
-					</td>
-					<c:if test="${vd.state}==0">
-						<td>
-							未学
-						</td>
-					</c:if>
-					<c:if test="${vd.state}==1">
-						<td>
-							已学
-						</td>
-					</c:if>
-				</tr>
+    		<c:forEach items="${detail.list}" var="vd" varStatus="status">
+
+                    <tr>
+                        <td>
+                            课时${status.count}
+                        </td>
+                        <td>
+                            <a onclick="gotowatch(${vd.id})" ">
+                                ${vd.title}
+                            </a>
+                        </td>
+                        <td>
+                                ${vd.duration}
+                        </td>
+                        <c:if test="${vd.state==0}">
+                            <td>
+                                未学
+                            </td>
+                        </c:if>
+                        <c:if test="${vd.state==1}">
+                            <td>
+                                已学
+                            </td>
+                        </c:if>
+                    </tr>
+
 			</c:forEach>
 		</table>
  	</body>
+    <script>
+        function gotowatch(contentId) {
+            window.parent.location.href="Vdetail?contentId="+contentId;
+        }
+    </script>
 </html>

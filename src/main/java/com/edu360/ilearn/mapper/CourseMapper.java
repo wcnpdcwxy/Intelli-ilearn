@@ -11,4 +11,6 @@ public interface CourseMapper {
     Course detail(int courseId);
 
     List<Course> doSearch(String searchContent);
+
+    List<Course> doType(String type);
 }

@@ -9,6 +9,9 @@ public class Course {
     private String picAddr;
 //    上传者id
     private int userId;
+
+    private String userNickName;
+
 //    课程介绍--适用人群
     private String intro1;
     //    课程介绍--课程概述
@@ -19,6 +22,8 @@ public class Course {
     private int mark;
 //    开课时间
     private String time;
+
+    private String type;
 
     public int getId() {
         return id;
@@ -92,6 +97,23 @@ public class Course {
         this.picAddr = picAddr;
     }
 
+
+    public String getUserNickName() {
+        return userNickName;
+    }
+
+    public void setUserNickName(String userNickName) {
+        this.userNickName = userNickName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -99,11 +121,13 @@ public class Course {
                 ", courseName='" + courseName + '\'' +
                 ", picAddr='" + picAddr + '\'' +
                 ", userId=" + userId +
+                ", userNickName='" + userNickName + '\'' +
                 ", intro1='" + intro1 + '\'' +
                 ", intro2='" + intro2 + '\'' +
                 ", intro3='" + intro3 + '\'' +
                 ", mark=" + mark +
                 ", time='" + time + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

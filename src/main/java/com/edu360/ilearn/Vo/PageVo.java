@@ -3,8 +3,11 @@ package com.edu360.ilearn.Vo;
 import com.edu360.ilearn.Tool.PageHelper;
 import com.edu360.ilearn.entity.Course;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.xml.transform.Source;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class PageVo <T>{
     private List<T> totalList;
@@ -105,4 +108,92 @@ public class PageVo <T>{
                 ", page_data_num=" + page_data_num +
                 '}';
     }
+
+
+
+    public void setPage_data_time_order(String page_data_time_order) {
+        List<T> pageList1 = getTotalList();
+        List<Course> pageList2 = null;
+//        if(((Course)pageList1.get(1)).getCourseName()!=null){
+            pageList2 = (List<Course>) pageList1;
+
+            Comparator<Course> comparator= new Comparator<Course>(){
+                public int compare(Course s1, Course s2) {
+                    if(s1.getTime()!=s2.getTime()){
+                        return s2.getTime().compareTo(s1.getTime());
+                    }else{
+                        return s2.getId()-s1.getId();
+                    }
+                }
+            };
+
+            Comparator<Course> comparator2= new Comparator<Course>(){
+                public int compare(Course s1, Course s2) {
+                    if(s1.getTime()!=s2.getTime()){
+                        return s1.getTime().compareTo(s2.getTime());
+                    }else{
+                        return s2.getId()-s1.getId();
+                    }
+                }
+            };
+
+            if(page_data_time_order.equals("down")){
+                pageList2.sort(comparator);
+            }else{
+                pageList2.sort(comparator2);
+            }
+
+
+
+        setTotalList((List<T>)pageList2);
+
+//            System.out.println(pageList);
+//        }
+
+    }
+
+    private List<T> oldTotalList;
+
+    public List<T> getOldTotalList() {
+        return oldTotalList;
+    }
+
+    public void setOldTotalList() {
+        this.oldTotalList = totalList;
+    }
+
+    public void setPage_data_time_filter(int page_data_time_filter) {
+        List<T> pageList1 = getOldTotalList();
+        List<Course> pageList2 = null;
+//        if(((Course)pageList1.get(1)).getCourseName()!=null){
+            pageList2 = (List<Course>) pageList1;
+
+            long nowTime = new Date().getTime();
+
+            List<Course> pageList3 = new ArrayList<Course>();
+
+            for(int i = 0;i<pageList2.size();i++){
+                Course course = pageList2.get(i);
+
+                String timestr = course.getTime();
+                Date thistime = new SimpleDateFormat("yyyy-MM-dd").parse(timestr, new ParsePosition(0));
+
+                long time = thistime.getTime();
+                long millis = nowTime - time;
+
+                long days = TimeUnit.MILLISECONDS.toDays(millis);
+
+                if(days<page_data_time_filter){
+                    pageList3.add(course);
+                }
+
+            }
+
+
+        setTotalList((List<T>)pageList3);
+
+//            System.out.println(pageList);
+        }
+
+//    }
 }

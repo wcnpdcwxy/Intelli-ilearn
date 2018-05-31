@@ -10,6 +10,7 @@
         <result property="title" column="title"/>
         <result property="duration" column="duration"/>
         <result property="state" column="state"/>
+        <result property="vdAddr" column="vd_addr"/>
     </resultMap>
 
     <select id="getVedioList" parameterType="Integer" resultMap="content_result_map">

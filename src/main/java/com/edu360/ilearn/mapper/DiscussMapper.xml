@@ -10,6 +10,7 @@
         <result property="contentId" column="content_id"/>
         <result property="content" column="content"/>
         <result property="userId" column="user_id"/>
+        <result property="userNickName" column="user_nickName"/>
         <result property="time" column="time"/>
     </resultMap>
 

@@ -30,5 +30,10 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.doSearch(searchContent);
     }
 
+    @Override
+    public List<Course> doType(String type) {
+        return courseMapper.doType(type);
+    }
+
 }
 

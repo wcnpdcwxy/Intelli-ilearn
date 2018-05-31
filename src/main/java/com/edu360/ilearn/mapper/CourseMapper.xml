@@ -10,11 +10,13 @@
         <result property="courseName" column="course_name"/>
         <result property="picAddr" column="pic_addr"/>
         <result property="userId" column="user_id"/>
+        <result property="userNickName" column="user_nickName"/>
         <result property="intro1" column="intro1"/>
         <result property="intro2" column="intro2"/>
         <result property="intro3" column="intro3"/>
         <result property="mark" column="mark"/>
         <result property="time" column="time"/>
+        <result property="type" column="type"/>
     </resultMap>
 
     <select id="detail" parameterType="Integer" resultMap="course_result_map">
@@ -23,6 +25,10 @@
 
     <select id="doSearch" parameterType="String" resultMap="course_result_map">
         SELECT * FROM course WHERE course_name LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+    </select>
+
+    <select id="doType" parameterType="String" resultMap="course_result_map">
+        SELECT * FROM course WHERE type = #{type}
     </select>
 
 </mapper>

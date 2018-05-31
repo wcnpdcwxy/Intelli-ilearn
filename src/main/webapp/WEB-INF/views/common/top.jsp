@@ -26,10 +26,6 @@
                 $('#login_btn').click(function() {
                     window.parent.abc();
                 });
-                $('#search_btn').click(function() {
-//                  怎么在第二个frame页面展示？
-                    document.getElementsByName("searchAction")[0].submit();
-                });
 <%
     User user = new User();
 	if(session.getAttribute("user")!=null){
@@ -95,7 +91,6 @@
 			</div>
 
 			<div class="container" style="background-color: white">
-
 				<div class="head-top">
 					<div class="col-sm-7 col-md-offset-2 h_menu4" style="background-color: white">
 						<nav class="navbar nav_bottom" role="navigation">
@@ -103,25 +98,25 @@
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav nav_1">
 									<li>
-										<a class="color" href="toHome" target="home">Home</a>
+										<a class="color" href="toHome" target="home">首页</a>
 									</li>
 									<li>
-										<a class="color1" href="product.html">计算机</a>
+										<a class="color1" href="doType?type=计算机" target="home">计算机</a>
 									</li>
 									<li>
-										<a class="color2" href="product.html">Sale</a>
+										<a class="color2" href="doType?type=经济管理" target="home">经济管理</a>
 									</li>
 									<li>
-										<a class="color3" href="product.html">Sale</a>
+										<a class="color3" href="doType?type=心理学" target="home">心理学</a>
 									</li>
 									<li>
-										<a class="color4" href="404.html">About</a>
+										<a class="color4" href="doType?type=外语" target="home">外语</a>
 									</li>
 									<li>
-										<a class="color5" href="typo.html">Short Codes</a>
+										<a class="color5" href="doType?type=文学历史" target="home">文学历史</a>
 									</li>
 									<li>
-										<a class="color6" href="contact.html">Contact</a>
+										<a class="color6" href="doType?type=艺术设计" target="home">艺术设计</a>
 									</li>
 								</ul>
 							</div>
@@ -132,10 +127,10 @@
 					<div class="col-sm-3 search-right" style="background-color: white;height: 50px;">
 						<ul class="heart">
                             <li>
-								<form name="searchAction" action="/doSearch" method="get">
-                                    <input type="text" name="searchContent" placeholder="Search..">
-                                    <a id="search_btn" onclick="search()" target="home"><i class="glyphicon glyphicon-search"> </i></a>
-                                </form>
+								<%--<form name="searchAction" action="/doSearch" method="get">--%>
+                                    <input type="text" name="searchContent" id="searchContent" placeholder="Search.." value="">
+                                    <a id="search_btn" href="javascript:toPage();" target="home"><i class="glyphicon glyphicon-search"> </i></a>
+                                <%--</form>--%>
                             </li>
 							<li>
 								<a href="wishlist.html">
@@ -156,5 +151,11 @@
 		<script src="../../../js/bootstrap.min.js"></script>
 
 	</body>
-
+    <script>
+        function toPage(page)
+        {
+            var pagevalue=document.getElementById("searchContent");
+            window.parent.document.getElementById("showPage").src="doSearch?searchContent="+pagevalue.value;
+        }
+    </script>
 </html>

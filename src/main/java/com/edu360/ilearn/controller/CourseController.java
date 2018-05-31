@@ -24,14 +24,17 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @PostMapping("/detail")
-    public CourseVo detail(int courseId){
-        return courseService.detail(courseId);
+    @GetMapping("/detail")
+    public String detail(int courseId,HttpSession session){
+        session.removeAttribute("detail");
+        CourseVo detail = courseService.detail(courseId);
+        session.setAttribute("detail",detail);
+        return "content/detail";
     }
 //    , HttpServletRequest request
 
     @GetMapping("/doSearch")
-    public String doSearch(String searchContent, HttpSession session, HttpServletRequest request){
+    public String doSearch(String searchContent, HttpSession session){
         session.removeAttribute("pVo");
         session.removeAttribute("searchContent");
         session.setAttribute("searchContent",searchContent);
@@ -45,5 +48,46 @@ public class CourseController {
         }
         session.setAttribute("pVo",pVo);
         return "redirect:toSearch";
+    }
+
+    @GetMapping("/doOrder")
+    public String doOrder(String order, HttpSession session){
+        System.out.println("order:"+order);
+
+        PageVo pVo = (PageVo) session.getAttribute("pVo");
+        pVo.setPage_data_time_order(order);
+
+        session.setAttribute("pVo",pVo);
+
+        return "redirect:toSearch";
+    }
+
+    @GetMapping("/doType")
+    public String doType(String type, HttpSession session){
+        session.removeAttribute("pVo");
+        session.removeAttribute("type");
+        session.setAttribute("type",type);
+
+        System.out.println("type"+type);
+        List<Course> list = courseService.doType(type);
+        PageVo pVo = new PageVo();
+        if(list!=null){
+            pVo.setTotalList(list);
+            pVo.setTotal_data_num(list.size());
+            pVo.setOldTotalList();
+        }
+        session.setAttribute("pVo",pVo);
+        return "redirect:toType";
+    }
+
+    @GetMapping("/doFilter")
+    public String doFilter(int filter, HttpSession session){
+        System.out.println("filter:"+filter);
+
+        PageVo pVo = (PageVo) session.getAttribute("pVo");
+        pVo.setPage_data_time_filter(filter);
+
+        session.setAttribute("pVo",pVo);
+        return "redirect:toType";
     }
 }

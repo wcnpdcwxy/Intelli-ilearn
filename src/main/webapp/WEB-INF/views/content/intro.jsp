@@ -11,11 +11,13 @@
 		<script src="../../../js/bootstrap.min.js"></script>
     </head>
     <body>
-    	<h2><b>适用人群</b></h2><br />
-    	<p>${intro1}</p><br /><br />
-    	<h2><b>课程概述</b></h2><br />
-    	<p>${intro2}</p><br /><br />
-    	<h2><b>联系方式</b></h2><br />
-    	<p>${intro3}</p><br /><br />
+		<div style="padding-left: 20px">
+			<h3><b>适用人群</b></h3><br />
+			<p>${detail.course.intro1}</p><br />
+			<h3><b>课程概述</b></h3><br />
+			<p>${detail.course.intro2}</p><br />
+			<h3><b>联系方式</b></h3><br />
+			<p>${detail.course.intro3}</p><br />
+		</div>
  	</body>
 </html>

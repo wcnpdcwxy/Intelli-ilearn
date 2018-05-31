@@ -12,10 +12,11 @@
     <head>
         <title>搜索页面</title>
         <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-        
+        <link href="../../css/jquery.raty.css" rel="stylesheet" type="text/css" media="all" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script src="../../js/jquery.min.js"></script>
+        <script src="../../js/jquery.raty.js"></script>
     </head>
     <style>
         .corner{
@@ -36,13 +37,14 @@
         }
     </style>
     <script>
+
 //  异步请求方法1  保存（request？session）一个list数据 包含一组实体类对象
 
 //  异步请求方法2 含参数  保存（request？session）一个list数据 包含一组已排序的实体类对象
     
     </script>
-    <body style="background-color: whitesmoke">
-    	<div class="container" style="height: 1000px;">
+    <body style="background-color: antiquewhite">
+    	<div class="container" style="height: 1000px;background-color: whitesmoke;">
     		<!--搜索参数设置-->
     		<div style="height: 7%;margin-top: 20px;border-bottom: groove;border-color: whitesmoke">
 	    		<!--搜索栏-->
@@ -60,15 +62,15 @@
 	    		<div style="float: right;margin-right: 10px">
 	    			时间：
 	    			<!--异步请求2参数1-->
-	    			<a onclick="">
+	    			<a href="doOrder?order=down">
 	    				<font>
-	    					升序
+	    					新——>旧
 	    				</font>
 	    			</a>
 	    			<!--异步请求2参数2-->
-	    			<a onclick="">
+	    			<a href="doOrder?order=up">
 	    				<font>
-	    					降序
+                            旧——>新
 	    				</font>
 	    			</a>
 	    		</div>
@@ -78,29 +80,30 @@
     			<div style="height: 400px;padding-top: 15px;height: 92%">
                     <!--循环提取list中的实体类并在div中显示-->
                     <c:forEach items="${pVo.pageList}" var="course" varStatus="status">
-                        <div style="width: 16%;height: 271px;margin-top: 15px;margin-left: 2%;margin-right: 2%;background-color: white">
-                            <div style="width: 100%;height: 40%">
-                                <img src="${course.picAddr}" height="" width="100%"/>
-                            </div>
-                            <div style="width: 100%;height: 60%; padding: 10px;">
-                                <div style="width: 100%;height: 40%;margin-top: 8px">
-                                    <h5>${course.courseName}</h5>
-                                        <%--nickName没有做，暂时用id代替--%>
-                                    <h6>${course.userId}</h6>
+                        <a href="detail?courseId=${course.id}">
+                            <div style="width: 16%;height: 271px;margin-top: 15px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                                <div style="width: 100%;height: 40%">
+                                    <img src="${course.picAddr}" height="" width="100%"/>
                                 </div>
-                                <div style="width: 100%;height: 60%;padding-top: 5px">
-                                    <%--打分插件没做，展示显示分数--%>
-                                    <div style="padding-bottom: 1px">
-                                        <h6>${course.mark}</h6>
+                                <div style="width: 100%;height: 60%; padding: 10px;">
+                                    <div style="width: 100%;height: 40%;margin-top: 8px">
+                                        <h5>${course.courseName}</h5>
+                                        <h6>${course.userNickName}</h6>
                                     </div>
-                                    <%--积分购买制度没有实行，暂无内容--%>
-                                    <div>
-                                        <h5>免费</h5>
+                                    <div style="width: 100%;height: 60%;padding-top: 5px">
+                                            <%--展示显示分数，无打分功能--%>
+                                        <div style="padding-bottom: 1px">
+                                            <div id="star" data-score="${course.mark}"></div>
+                                        </div>
+                                            <%--积分购买制度没有实行，暂无内容--%>
+                                        <div>
+                                            <h5>免费</h5>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
 				<%--分页--%>
@@ -146,4 +149,11 @@
     		</div>
     	</div>
  	</body>
+    <script>
+        $('#star').raty({
+            number: 5,
+            readOnly: true,
+            half: true,
+        });
+    </script>
 </html>
