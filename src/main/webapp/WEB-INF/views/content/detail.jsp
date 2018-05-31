@@ -1,5 +1,13 @@
+<%@ page import="com.edu360.ilearn.Vo.OrderVo" %>
+<%@ page import="com.edu360.ilearn.entity.Course" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.edu360.ilearn.Vo.FavouriteVo" %>
+<%@ page import="com.edu360.ilearn.Vo.CourseVo" %>
 <!--课程详情页面-->
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>课程详情页面</title>
@@ -22,23 +30,23 @@
                     <!--右半边详情区域-->
                     <div style="float: left;width: 60%;height: 250px;margin-left: 20px;">
                         <!--上25%-->
-                        <div style="height: 30%">
+                        <div style="height: 28%">
                             <!--左80%-->
-                            <div style="width: 80%">
+                            <div style="width: 80%;float: left;">
                                 <!--上75%-->
                                 <div style="height: 70%">
-                                    <h2>
+                                    <h2 style="padding-top: 5px">
                                         ${detail.course.courseName}
                                     </h2>
                                 </div>
-                                <div style="height: 20%;">
+                                <div style="height: 30%;">
                                     <!--打分mark-->
-                                    <div style="padding-top: 7px;float: left;">
+                                    <div style="padding-top: 2px;float: left;">
                                         <div id="star" data-score="${detail.course.mark}"></div>
                                     </div>
                                     <!--讲师-->
-                                    <div style="float: left;margin-left: 10px">
-                                        <h5>
+                                    <div style="float: left;margin-left: 10px;">
+                                        <h5 style="margin-top: 5px;">
                                             讲师：${detail.course.userNickName} &nbsp;
                                             上传时间：${detail.course.time}
                                         </h5>
@@ -46,26 +54,59 @@
                                 </div>
                             </div>
                             <!--右20%-->
-                            <div>
-                                <!--收藏等功能-->
+                            <div id="fav" style="float: right;">
+                                <!--收藏功能-->
+                                <div style="width: 42px;height: 27px;">
+                                    <%
+                                        boolean kk = false;
+                                        CourseVo detail = (CourseVo) session.getAttribute("detail");
+                                        ArrayList<Course> favouritelist = (ArrayList<Course>) session.getAttribute("favouritelist");
+                                        if(favouritelist!=null){
+                                            for(int i = 0;i<favouritelist.size();i++){
+                                                Course course = favouritelist.get(i);
+                                                if(course.getId()==detail.getCourse().getId()){
+                                                    kk = true;
+                                                }
+                                            }
+                                        }
+                                        if(kk){
+                                            %>
+                                    <a href="intoFavourite" target="_blank">
+                                        <img src="../../../images/empty_star.png" style="width: 100%;height: 100%"/>
+                                    </a>
+                                    <%
+                                        }else {
+                                            %>
+                                    <a href="outFavourite" target="_blank">
+                                        <img src="../../../images/full_star.png" style="width: 100%;height: 100%"/>
+                                    </a>
+                                    <%
+                                        }
+                                    %>
+
+                                </div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                         <!--下20%-->
-                        <div style="height: 32%">
-                            <span>
-                                <h2 style="color: red">
-                                    免费
-                                </h2>
-                            </span>
+                        <div style="height: 42%;padding-right: 60%;">
+                            <c:if test="${detail.course.cost==0}">
+                                <h2 style="color: red">免费</h2>
+                            </c:if>
+                            <c:if test="${detail.course.cost!=0}">
+                                <h2 style="color: red">¥ ${detail.course.cost}</h2>
+                            </c:if>
                         </div>
-                        <div style="height: 22%">
+                        <div style="height: 22%;">
                             <!--橘黄色按钮单击触发方法-->
                             <div style="width: 160px;height: 54px;background-color: darkorange;color: white">
-                                <span>
-                                    <h2 style="margin-top: 0px;text-align: center;padding-top: 10px">
-                                        开始学习
-                                    </h2>
-                                </span>
+                                <a onclick="gotowatch2()">
+                                    <span>
+                                        <h2 style="margin-top: 0px;text-align: center;padding-top: 10px">
+                                            开始学习
+                                        </h2>
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -105,5 +146,11 @@
         window.onload = function () {
             setIframeHeight(document.getElementById('external-frame'));
         };
+
+        function gotowatch2() {
+            var main_frame_element = window.document.getElementsByName("main_frame")[0];
+            main_frame_element.src="toVedioMenu"
+            main_frame_element.contentWindow.gotowatch(${detail.list.get(0).id})
+        }
     </script>
 </html>

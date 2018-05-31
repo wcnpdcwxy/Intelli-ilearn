@@ -18,6 +18,7 @@ public class User {
     private String phoneNum;
     private int status;
     private String oriDate;
+    private int points;
 
     public String getOriDate() {
         return oriDate;
@@ -83,6 +84,14 @@ public class User {
         this.status = status;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -93,7 +102,8 @@ public class User {
                 ", stage=" + stage +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", status=" + status +
-                ", oriDate=" + oriDate +
+                ", oriDate='" + oriDate + '\'' +
+                ", points=" + points +
                 '}';
     }
 }

@@ -1,12 +1,22 @@
 package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Tool.TimeUtil;
+import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.UserVo;
+import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
+import com.edu360.ilearn.entity.pathTable;
+import com.edu360.ilearn.mapper.DataMapper;
 import com.edu360.ilearn.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.transform.Source;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 @Service
@@ -25,7 +35,13 @@ public class UserServiceImpl implements UserService {
         if(user.getOriDate()==null){
             user.setOriDate(TimeUtil.getTime("date"));
         }
-        return userMapper.register(user);
+        int register = userMapper.register(user);
+
+        User one = userMapper.findOne(user);
+        one.setPoints(one.getPoints()+100);
+        userMapper.updatePoints(one);
+
+        return register;
     }
 
     @Override
@@ -36,7 +52,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return userMapper.findOne(user);
+        UserVo userVo = userMapper.getUserVo(user);
+        User one = userMapper.findOne(user);
+        int point = 0;
+        if(userVo!=null){
+            String date = userVo.getNewDate().split(" ")[0];
+            Date tab_date = new SimpleDateFormat("yyyy-MM-dd").parse(date, new ParsePosition(0));
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+
+            Date nowdate=new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(nowdate);
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            Date newdate = calendar.getTime();
+
+            boolean equals = fmt.format(newdate).equals(fmt.format(tab_date));
+
+            if(equals){
+                one.setPoints(point+one.getPoints());
+                userMapper.updatePoints(one);
+            }
+        }
+        return one;
     }
 
     @Override
@@ -55,6 +92,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         userMapper.updateUser(user);
+    }
+
+    @Override
+    public ArrayList<Course> getOrder(int id) {
+        return userMapper.getOrder(id);
+    }
+
+    @Override
+    public void updatePoints(User user) {
+        userMapper.updatePoints(user);
+    }
+
+    @Override
+    public void addOrder(OrderVo orderVo) {
+        userMapper.addOrder(orderVo);
     }
 
 }

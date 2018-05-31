@@ -1,5 +1,8 @@
 package com.edu360.ilearn.mapper;
 
+import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.UserVo;
+import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +22,12 @@ public interface UserMapper {
     ArrayList<User> findAll();
 
     void updateUser(User user);
+
+    ArrayList<Course> getOrder(int id);
+
+    void updatePoints(User user);
+
+    UserVo getUserVo(User user);
+
+    void addOrder(OrderVo orderVo);
 }

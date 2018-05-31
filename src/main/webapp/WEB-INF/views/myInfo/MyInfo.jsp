@@ -59,6 +59,10 @@
 										<label for="exampleInputPassword3">电话</label>
 										<input type="password" class="form-control" id="exampleInputPassword3" placeholder="${phoneNum}">
 									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword4">积分</label>
+										<input type="password" class="form-control" id="exampleInputPassword4" placeholder="${points}">
+									</div>
 									<!--记住密码-->
 									<!--<div class="checkbox">
 										<label>

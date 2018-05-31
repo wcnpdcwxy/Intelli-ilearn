@@ -13,6 +13,14 @@
         <result property="vdAddr" column="vd_addr"/>
     </resultMap>
 
+    <resultMap type="com.edu360.ilearn.Vo.HistoryVo" id="history_result_map">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="contentId" column="content_id"/>
+        <result property="datetime" column="datetime"/>
+    </resultMap>
+
     <select id="getVedioList" parameterType="Integer" resultMap="content_result_map">
         SELECT content.id,content.title,content.duration,content.state FROM content,course_content WHERE course_content.course_id = #{courseId} AND course_content.content_id=content.id
     </select>
@@ -21,4 +29,11 @@
         SELECT * FROM content WHERE id = #{contentId}
     </select>
 
+    <insert id="setHistory" parameterType="com.edu360.ilearn.Vo.HistoryVo">
+        INSERT INTO history_tab (id, user_id, course_id, contentId, datetime) VALUES (null, #{userId}, #{courseId}, #{contentId}, #{datetime})
+    </insert>
+
+    <select id="getHistoryById" parameterType="Integer" resultMap="history_result_map">
+        SELECT * FROM history_tab WHERE user_id = #{userId}
+    </select>
 </mapper>

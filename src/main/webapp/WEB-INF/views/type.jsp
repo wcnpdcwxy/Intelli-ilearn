@@ -105,7 +105,12 @@
 										</div>
 											<%--积分购买制度没有实行，暂无内容--%>
 										<div>
-											<h5>免费</h5>
+                                            <c:if test="${course.cost==0}">
+                                                <h5>免费</h5>
+                                            </c:if>
+                                            <c:if test="${course.cost!=0}">
+                                                <h5>¥ ${course.cost}</h5>
+                                            </c:if>
 										</div>
 									</div>
 

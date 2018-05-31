@@ -9,7 +9,7 @@ public class Course {
     private String picAddr;
 //    上传者id
     private int userId;
-
+//    上传者nickName
     private String userNickName;
 
 //    课程介绍--适用人群
@@ -22,8 +22,10 @@ public class Course {
     private int mark;
 //    开课时间
     private String time;
-
+//      课程分类
     private String type;
+//    花费积分
+    private int cost;
 
     public int getId() {
         return id;
@@ -114,6 +116,14 @@ public class Course {
         this.type = type;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -128,6 +138,7 @@ public class Course {
                 ", mark=" + mark +
                 ", time='" + time + '\'' +
                 ", type='" + type + '\'' +
+                ", cost=" + cost +
                 '}';
     }
 }

@@ -125,4 +125,10 @@ public class TurnController {
         }
         return "type";
     }
+
+
+    @RequestMapping("/toDetail")
+    public String toDetail() {
+        return "content/detail";
+    }
 }

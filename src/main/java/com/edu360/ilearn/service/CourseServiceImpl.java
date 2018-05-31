@@ -1,12 +1,14 @@
 package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Vo.CourseVo;
+import com.edu360.ilearn.Vo.FavouriteVo;
 import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.mapper.ContentMapper;
 import com.edu360.ilearn.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +35,21 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> doType(String type) {
         return courseMapper.doType(type);
+    }
+
+    @Override
+    public ArrayList<Course> getFavouriteByuserId(int userId) {
+        return courseMapper.getFavouriteByuserId(userId);
+    }
+
+    @Override
+    public void intoFavourite(FavouriteVo favouriteVo) {
+        courseMapper.intoFavourite(favouriteVo);
+    }
+
+    @Override
+    public void outFavourite(FavouriteVo favouriteVo) {
+        courseMapper.outFavourite(favouriteVo);
     }
 
 }

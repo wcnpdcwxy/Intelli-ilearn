@@ -16,4 +16,5 @@ public interface DataMapper {
     ArrayList<bounceRate> getBounceRate();
 
     ArrayList<pathTable> getPathTable(String date);
+
 }

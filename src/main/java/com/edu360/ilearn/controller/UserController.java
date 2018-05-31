@@ -3,8 +3,13 @@ package com.edu360.ilearn.controller;
 import com.edu360.ilearn.Tool.CreateLog;
 import com.edu360.ilearn.Tool.HttpPostUtil;
 import com.edu360.ilearn.Tool.TimeUtil;
+import com.edu360.ilearn.Vo.CourseVo;
+import com.edu360.ilearn.Vo.FavouriteVo;
 import com.edu360.ilearn.Vo.LoginVo;
+import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
+import com.edu360.ilearn.service.CourseService;
 import com.edu360.ilearn.service.UserService;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.hibernate.Session;
@@ -12,13 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CourseService courseService;
+
 
 //    注册
     @PostMapping("/register")
@@ -46,6 +56,8 @@ public class UserController {
     public String Logout(HttpSession session){
         System.out.println(999);
         session.removeAttribute("user");
+        session.removeAttribute("orderlist");
+        session.removeAttribute("favouritelist");
         return "redirect:toIndex";
     }
 
@@ -53,17 +65,21 @@ public class UserController {
     @PostMapping("/logined")
     @ResponseBody
     public String login(LoginVo vo,HttpSession session){
-        System.out.println(321);
-        System.out.println(vo);
-
+        //验证登陆信息
         User user = new User();
         user.setUserName(vo.getUserName());
         user.setPassword(vo.getPassword());
         User newUser = userService.login(user);
-
+        //查找用户所有订单信息
+        ArrayList<Course> orderlist = userService.getOrder(newUser.getId());
+        //查找用户所有收藏信息
+        ArrayList<Course> favouritelist = courseService.getFavouriteByuserId(newUser.getId());
+        //编辑日志信息
         String info = "{\"time\":\""+ TimeUtil.getTime("long")+"\",\"userId\":\""+newUser.getId()+"\",\"userName\":\""+newUser.getUserName()+"\"}";
         if(newUser!=null) {
             session.setAttribute("user",newUser);
+            session.setAttribute("orderlist",orderlist);
+            session.setAttribute("favouritelist",favouritelist);
             HttpPostUtil.sendLog(info,"recharge");
             return "success";
         }else {
@@ -78,6 +94,37 @@ public class UserController {
         User user = userService.findinfo(userId);
         return user;
     }
+
+
+    @GetMapping("/afford")
+    public String afford( HttpSession session){
+        User user = (User) session.getAttribute("user");
+        CourseVo detail = (CourseVo) session.getAttribute("detail");
+
+        //积分减少
+        int lastpoint = user.getPoints() - detail.getCourse().getCost();
+        user.setPoints(lastpoint);
+        session.setAttribute("user",user);
+        userService.updatePoints(user);
+
+        //订单添加
+        OrderVo orderVo = new OrderVo();
+        orderVo.setUserId(user.getId());
+        orderVo.setCourseId(detail.getCourse().getId());
+        String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        orderVo.setDatetime(format);
+
+        userService.addOrder(orderVo);
+        ArrayList<Course> orderlist = userService.getOrder(user.getId());
+        session.setAttribute("orderlist",orderlist);
+
+        return "redirect:toDetail";
+    }
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //生成登陆日志数据

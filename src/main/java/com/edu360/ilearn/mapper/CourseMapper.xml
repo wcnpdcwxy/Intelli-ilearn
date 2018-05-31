@@ -17,6 +17,7 @@
         <result property="mark" column="mark"/>
         <result property="time" column="time"/>
         <result property="type" column="type"/>
+        <result property="cost" column="cost"/>
     </resultMap>
 
     <select id="detail" parameterType="Integer" resultMap="course_result_map">
@@ -30,5 +31,17 @@
     <select id="doType" parameterType="String" resultMap="course_result_map">
         SELECT * FROM course WHERE type = #{type}
     </select>
+
+    <select id="getFavouriteByuserId" parameterType="Integer" resultMap="course_result_map">
+        SELECT course.* FROM course,favourite_tab where favourite_tab.user_id = #{userId} AND course.id = favourite_tab.course_id
+    </select>
+
+    <insert id="intoFavourite" parameterType="com.edu360.ilearn.Vo.FavouriteVo">
+        INSERT INTO favourite_tab (id, user_id, course_id, datetime) VALUES (null, #{userId}, #{courseId}, #{datetime})
+    </insert>
+
+    <delete id="outFavourite" parameterType="com.edu360.ilearn.Vo.FavouriteVo">
+        DELETE FROM favourite_tab WHERE user_id = #{userId} AND course_id = #{courseId}
+    </delete>
 
 </mapper>

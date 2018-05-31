@@ -14,6 +14,27 @@
         <result property="phoneNum" column="phone_num"/>
         <result property="status" column="status"/>
         <result property="ori_date" column="oriDate"/>
+        <result property="points" column="points"/>
+    </resultMap>
+
+    <resultMap type="com.edu360.ilearn.entity.Course" id="course_result_map">
+        <id property="id" column="id"/>
+        <result property="courseName" column="course_name"/>
+        <result property="picAddr" column="pic_addr"/>
+        <result property="userId" column="user_id"/>
+        <result property="userNickName" column="user_nickName"/>
+        <result property="intro1" column="intro1"/>
+        <result property="intro2" column="intro2"/>
+        <result property="intro3" column="intro3"/>
+        <result property="mark" column="mark"/>
+        <result property="time" column="time"/>
+        <result property="type" column="type"/>
+        <result property="points" column="points"/>
+    </resultMap>
+
+    <resultMap type="com.edu360.ilearn.Vo.UserVo" id="userVo_result_map">
+        <id property="id" column="id"/>
+        <result property="newDate" column="new_date"/>
     </resultMap>
 
     <select id="findOne" parameterType="com.edu360.ilearn.entity.User" resultMap="user_result_map">
@@ -39,4 +60,21 @@
     <update id="updateUser" parameterType="com.edu360.ilearn.entity.User">
         UPDATE user SET status = #{status} WHERE id = #{id}
     </update>
+
+    <update id="updatePoints" parameterType="com.edu360.ilearn.entity.User">
+        UPDATE user SET points = #{points} WHERE id = #{id}
+    </update>
+
+    <select id="getOrder" parameterType="Integer" resultMap="course_result_map">
+        SELECT course.* FROM course,order_tab WHERE order_tab.user_id = #{id} and order_tab.course_id = course.id
+    </select>
+
+    <select id="getUserVo" parameterType="com.edu360.ilearn.entity.User" resultMap="userVo_result_map">
+        SELECT update_user.id,update_user.new_date FROM update_user where id = #{id}
+    </select>
+
+    <insert id="addOrder" parameterType="com.edu360.ilearn.Vo.OrderVo">
+        INSERT INTO order_tab (id, user_id, course_id, datetime) VALUES (null, #{userId}, #{courseId}, #{datetime})
+    </insert>
+
 </mapper>
