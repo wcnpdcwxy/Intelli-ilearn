@@ -112,7 +112,7 @@ public class CourseController {
         favouritelist.add(detail.getCourse());
         session.setAttribute("favouritelist",favouritelist);
 
-        return "redirect:toSearch";
+        return "redirect:toDetail";
     }
 
     @GetMapping("/outFavourite")
@@ -125,10 +125,9 @@ public class CourseController {
         favouriteVo.setCourseId(detail.getCourse().getId());
         courseService.outFavourite(favouriteVo);
 
-        ArrayList<Course> favouritelist = (ArrayList<Course>) session.getAttribute("favouritelist");
-        favouritelist.remove(detail.getCourse());
+        ArrayList<Course> favouritelist = courseService.getFavouriteByuserId(user.getId());
         session.setAttribute("favouritelist",favouritelist);
 
-        return "redirect:toSearch";
+        return "redirect:toDetail";
     }
 }

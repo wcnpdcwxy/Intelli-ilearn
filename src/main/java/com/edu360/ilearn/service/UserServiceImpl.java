@@ -2,6 +2,7 @@ package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Tool.TimeUtil;
 import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.PasswordVo;
 import com.edu360.ilearn.Vo.UserVo;
 import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
@@ -45,8 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void password(User user) {
-        userMapper.password(user);
+    public void password(PasswordVo passwordVo) {
+        userMapper.password(passwordVo);
     }
 
 
@@ -107,6 +108,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addOrder(OrderVo orderVo) {
         userMapper.addOrder(orderVo);
+    }
+
+    @Override
+    public void editinfo(User user) {
+        userMapper.editinfo(user);
     }
 
 }

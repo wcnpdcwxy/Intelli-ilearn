@@ -6,7 +6,10 @@
 <!--课程详情页面-->
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+    ArrayList<Course> favouritelist1 = (ArrayList<Course>) session.getAttribute("favouritelist");
+    System.out.println("favouritelist1:"+favouritelist1);
+%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -71,14 +74,14 @@
                                         }
                                         if(kk){
                                             %>
-                                    <a href="intoFavourite" target="_blank">
-                                        <img src="../../../images/empty_star.png" style="width: 100%;height: 100%"/>
+                                    <a href="outFavourite" target="_self">
+                                        <img src="../../../images/full_star.png" style="width: 100%;height: 100%"/>
                                     </a>
                                     <%
                                         }else {
                                             %>
-                                    <a href="outFavourite" target="_blank">
-                                        <img src="../../../images/full_star.png" style="width: 100%;height: 100%"/>
+                                    <a href="intoFavourite" target="_self">
+                                        <img src="../../../images/empty_star.png" style="width: 100%;height: 100%"/>
                                     </a>
                                     <%
                                         }
@@ -150,7 +153,6 @@
         function gotowatch2() {
             var main_frame_element = window.document.getElementsByName("main_frame")[0];
             main_frame_element.src="toVedioMenu"
-            main_frame_element.contentWindow.gotowatch(${detail.list.get(0).id})
         }
     </script>
 </html>

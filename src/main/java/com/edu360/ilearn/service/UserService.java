@@ -1,6 +1,7 @@
 package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.PasswordVo;
 import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
 
@@ -10,7 +11,7 @@ public interface UserService {
 
     int register(User user);
 
-    void password(User user);
+    void password(PasswordVo passwordVo);
 
     User login(User user);
 
@@ -25,4 +26,6 @@ public interface UserService {
     void updatePoints(User user);
 
     void addOrder(OrderVo orderVo);
+
+    void editinfo(User user);
 }

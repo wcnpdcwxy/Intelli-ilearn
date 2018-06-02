@@ -1,6 +1,7 @@
 package com.edu360.ilearn.mapper;
 
 import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.PasswordVo;
 import com.edu360.ilearn.Vo.UserVo;
 import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
@@ -13,7 +14,7 @@ public interface UserMapper {
 
     int register(User user);
 
-    void password(User user);
+    void password(PasswordVo passwordVo);
 
     User findOne(User user);
 
@@ -30,4 +31,6 @@ public interface UserMapper {
     UserVo getUserVo(User user);
 
     void addOrder(OrderVo orderVo);
+
+    void editinfo(User user);
 }

@@ -4,7 +4,9 @@ public class HistoryVo {
     private int id;
     private int userId;
     private int courseId;
+    private String courseName;
     private int contentId;
+    private String contentTitle;
     private String datetime;
 
     public int getId() {
@@ -47,14 +49,32 @@ public class HistoryVo {
         this.datetime = datetime;
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getContentTitle() {
+        return contentTitle;
+    }
+
+    public void setContentTitle(String contentTitle) {
+        this.contentTitle = contentTitle;
+    }
+
     @Override
     public String toString() {
         return "HistoryVo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", courseId=" + courseId +
+                ", courseName=" + courseName +
                 ", contentId=" + contentId +
-                ", datetime=" + datetime +
+                ", contentTitle=" + contentTitle +
+                ", datetime='" + datetime + '\'' +
                 '}';
     }
 }

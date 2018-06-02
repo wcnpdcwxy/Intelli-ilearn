@@ -77,7 +77,7 @@
 								<a id="logout_btn" src="javascript:;;">登出</a>
 							</li>
                             <li>
-                                <a id="user_name" src="toMyInfo">欢迎您！${user.nickName}(${user.points})</a>
+                                <a id="user_name" href='javascript:window.top.location.href = "toMyInfo";'>欢迎您！${user.nickName}(${user.points})</a>
                             </li>
                         </ul>
                         <ul id="outline">

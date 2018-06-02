@@ -3,10 +3,7 @@ package com.edu360.ilearn.controller;
 import com.edu360.ilearn.Tool.CreateLog;
 import com.edu360.ilearn.Tool.HttpPostUtil;
 import com.edu360.ilearn.Tool.TimeUtil;
-import com.edu360.ilearn.Vo.CourseVo;
-import com.edu360.ilearn.Vo.FavouriteVo;
-import com.edu360.ilearn.Vo.LoginVo;
-import com.edu360.ilearn.Vo.OrderVo;
+import com.edu360.ilearn.Vo.*;
 import com.edu360.ilearn.entity.Course;
 import com.edu360.ilearn.entity.User;
 import com.edu360.ilearn.service.CourseService;
@@ -44,11 +41,19 @@ public class UserController {
 
 //    修改密码
     @PostMapping("/password")
-    @ResponseBody
-    public String password(User user){
-        System.out.println(user);
-        userService.password(user);
-        return "success";
+    public String password(String oldpd,String newpd,HttpSession session){
+        User user = (User) session.getAttribute("user");
+
+        if(user.getPassword().equals(oldpd)){
+            PasswordVo passwordVo = new PasswordVo();
+            passwordVo.setUserId(user.getId());
+            passwordVo.setOldpd(oldpd);
+            passwordVo.setNewpd(newpd);
+
+            userService.password(passwordVo);
+        }
+
+        return "redirect:toMyInfo";
     }
 
 //    登出
@@ -70,13 +75,13 @@ public class UserController {
         user.setUserName(vo.getUserName());
         user.setPassword(vo.getPassword());
         User newUser = userService.login(user);
-        //查找用户所有订单信息
-        ArrayList<Course> orderlist = userService.getOrder(newUser.getId());
-        //查找用户所有收藏信息
-        ArrayList<Course> favouritelist = courseService.getFavouriteByuserId(newUser.getId());
         //编辑日志信息
         String info = "{\"time\":\""+ TimeUtil.getTime("long")+"\",\"userId\":\""+newUser.getId()+"\",\"userName\":\""+newUser.getUserName()+"\"}";
         if(newUser!=null) {
+            //查找用户所有订单信息
+            ArrayList<Course> orderlist = userService.getOrder(newUser.getId());
+            //查找用户所有收藏信息
+            ArrayList<Course> favouritelist = courseService.getFavouriteByuserId(newUser.getId());
             session.setAttribute("user",newUser);
             session.setAttribute("orderlist",orderlist);
             session.setAttribute("favouritelist",favouritelist);
@@ -87,12 +92,22 @@ public class UserController {
         }
     }
 
-    //    个人信息
+    //查找个人信息
     @PostMapping("/findinfo")
     @ResponseBody
     public User findinfo(int userId,HttpSession session){
         User user = userService.findinfo(userId);
         return user;
+    }
+
+    //修改个人信息
+    @PostMapping("/editinfo")
+    public String editinfo(User user,HttpSession session){
+        userService.editinfo(user);
+        User findinfo = userService.findinfo(user.getId());
+
+        session.setAttribute("user",findinfo);
+        return "redirect:toMyInfo";
     }
 
 
