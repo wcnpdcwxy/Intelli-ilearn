@@ -61,7 +61,7 @@
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<div class="footer-bottom">
+			<div class="footer-bottom" style="padding-top: 0px">
 				<div class="container">
 					<p class="footer-class">
 						<a href="#"  title="t1" target="_blank">粤B2-20090191-26 </a>

@@ -62,7 +62,7 @@
 		</div>
 		<script>
 			$(document).ready(function() {
-				var max = 2;
+				var max = 4;
 
 				function move_one(index) {
 					$('#examplee div').each(function(i) {

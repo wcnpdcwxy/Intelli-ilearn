@@ -103,7 +103,7 @@
 							<!-- ===== Third Tab ===== -->
 							<div class="tab-pane" id="portfolio">
                                 <div style="height:500px; width: 100%;">
-                                    <iframe src="toOrderinfo" name="secondTab" id="secondTab" style="width: 100%;height: 100%;border: none;"></iframe>
+                                    <iframe src="toOrderinfo" name="thirdTab" id="thirdTab" style="width: 100%;height: 100%;border: none;"></iframe>
                                 </div>
 							</div>
 							<!-- /Tab Portfolio -->

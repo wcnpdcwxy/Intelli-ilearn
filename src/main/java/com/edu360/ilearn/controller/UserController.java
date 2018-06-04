@@ -136,6 +136,26 @@ public class UserController {
         return "redirect:toDetail";
     }
 
+    @GetMapping("/lockUser")
+    public String lockUser(int userId,HttpSession session){
+        User user = new User();
+        user.setId(userId);
+        user.setStatus(3);
+
+        userService.updateUser(user);
+        return "redirect:toUserManager";
+    }
+
+    @GetMapping("/unlockUser")
+    public String unlockUser(int userId,HttpSession session){
+        User user = new User();
+        user.setId(userId);
+        user.setStatus(1);
+
+        userService.updateUser(user);
+        return "redirect:toUserManager";
+    }
+
 
 
 
@@ -146,7 +166,7 @@ public class UserController {
     @GetMapping("/createUserLog")
     @ResponseBody
     public String createUserLog(){
-        ArrayList<User> list = userService.findAll();
+        ArrayList<User> list = userService.findAllByStatus(1);
         //流失用户
         int[] indexs = CreateLog.loseUser(list);
         for(int i = 0;i<indexs.length;i++){
@@ -179,7 +199,7 @@ public class UserController {
     @GetMapping("/createUserPathLog")
     @ResponseBody
     public String createUserPathLog(HttpSession session){
-        ArrayList<User> list = userService.findAll();
+        ArrayList<User> list = userService.findAllByStatus(1);
         //造数据
         CreateLog.doPathLog("2018-05-06",list,session);
         return "success";

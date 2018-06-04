@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.edu360.ilearn.entity.User" %>
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
@@ -118,6 +119,11 @@
 									<li>
 										<a class="color6" href="doType?type=艺术设计" target="home">艺术设计</a>
 									</li>
+                                    <c:if test="${user.stage==1}">
+                                        <li>
+                                            <a class="color6" href="toEcharts" target="home">数据展示</a>
+                                        </li>
+                                    </c:if>
 								</ul>
 							</div>
 							<!-- /.navbar-collapse -->
@@ -152,7 +158,7 @@
 
 	</body>
     <script>
-        function toPage(page)
+        function toPage()
         {
             var pagevalue=document.getElementById("searchContent");
             window.parent.document.getElementById("showPage").src="doSearch?searchContent="+pagevalue.value;

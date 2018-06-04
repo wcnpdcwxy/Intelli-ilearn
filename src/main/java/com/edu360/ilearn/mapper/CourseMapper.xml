@@ -18,22 +18,23 @@
         <result property="time" column="time"/>
         <result property="type" column="type"/>
         <result property="cost" column="cost"/>
+        <result property="status" column="status"/>
     </resultMap>
 
     <select id="detail" parameterType="Integer" resultMap="course_result_map">
-        SELECT * FROM course WHERE id = #{courseId}
+        SELECT * FROM course WHERE status = 0 and id = #{courseId}
     </select>
 
     <select id="doSearch" parameterType="String" resultMap="course_result_map">
-        SELECT * FROM course WHERE course_name LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+        SELECT * FROM course WHERE status = 0 and course_name LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
     </select>
 
     <select id="doType" parameterType="String" resultMap="course_result_map">
-        SELECT * FROM course WHERE type = #{type}
+        SELECT * FROM course WHERE status = 0 and type = #{type}
     </select>
 
     <select id="getFavouriteByuserId" parameterType="Integer" resultMap="course_result_map">
-        SELECT course.* FROM course,favourite_tab where favourite_tab.user_id = #{userId} AND course.id = favourite_tab.course_id
+        SELECT course.* FROM course,favourite_tab where status = 0 and favourite_tab.user_id = #{userId} AND course.id = favourite_tab.course_id
     </select>
 
     <insert id="intoFavourite" parameterType="com.edu360.ilearn.Vo.FavouriteVo">
@@ -44,4 +45,20 @@
         DELETE FROM favourite_tab WHERE user_id = #{userId} AND course_id = #{courseId}
     </delete>
 
+    <select id="findAll" parameterType="String" resultMap="course_result_map">
+        SELECT * FROM course WHERE (course_name like CONCAT(CONCAT('%', #{search}), '%') OR user_nickName like CONCAT(CONCAT('%', #{search}), '%'))
+    </select>
+
+    <update id="updateCourse" parameterType="com.edu360.ilearn.entity.Course">
+        UPDATE course SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="updateCourse2" parameterType="com.edu360.ilearn.entity.Course">
+        UPDATE course SET course_name = #{courseName},type = #{type},intro1 = #{intro1},intro2 = #{intro2},intro3 = #{intro3},cost = #{cost} WHERE id = #{id}
+    </update>
+
+    <insert id="insertCourse" parameterType="com.edu360.ilearn.Vo.Course">
+        INSERT INTO course (id, course_name, user_id, user_nickName,intro1,intro2,intro3,mark,time,type,cost,status)
+                    VALUES (null, #{courseName}, #{userId}, #{userNickName},#{intro1}, #{intro2}, #{intro3},#{mark}, #{time}, #{cost},0)
+    </insert>
 </mapper>

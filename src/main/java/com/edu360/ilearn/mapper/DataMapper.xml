@@ -45,6 +45,7 @@
         <result property="date" column="date"/>
         <result property="alonePath" column="alone_path"/>
         <result property="totalPath" column="total_path"/>
+        <result property="rate" column="rate"/>
     </resultMap>
 
     <resultMap type="com.edu360.ilearn.entity.pathTable" id="pathTable_result_map">
@@ -64,7 +65,7 @@
     </select>
 
     <select id="getBounceRate" resultMap="bounceRate_result_map">
-        SELECT * FROM bounce_rate
+        SELECT *,alone_path/total_path rate FROM bounce_rate
     </select>
 
     <select id="getPathTable" parameterType="String" resultMap="pathTable_result_map">

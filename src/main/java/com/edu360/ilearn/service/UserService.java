@@ -17,7 +17,9 @@ public interface UserService {
 
     User findinfo(int userId);
 
-    ArrayList<User> findAll();
+    ArrayList<User> findAllByStatus(int num);
+
+    ArrayList<User> findAll(String search);
 
     void updateUser(User user);
 

@@ -38,4 +38,21 @@
     <select id="getHistoryById" parameterType="Integer" resultMap="history_result_map">
         SELECT history_tab.*,course.course_name,content.title FROM history_tab,course,content WHERE history_tab.user_id = #{userId} AND history_tab.course_id = course.id AND history_tab.content_id = content.id
     </select>
+
+    <select id="findAllByCourseId" parameterType="Integer" resultMap="content_result_map">
+        SELECT content.* FROM course_content,content WHERE course_content.course_id = #{courseId} AND course_content.content_id = content.id
+    </select>
+
+    <update id="updateContent" parameterType="com.edu360.ilearn.entity.Content">
+        UPDATE content SET state = #{state} WHERE id = #{id}
+    </update>
+
+    <update id="updateContent2" parameterType="com.edu360.ilearn.entity.Content">
+        UPDATE content SET title = #{title},duration = #{duration},vd_addr = #{vdAddr} WHERE id = #{id}
+    </update>
+
+    <insert id="insertContent" parameterType="com.edu360.ilearn.Vo.Content">
+        INSERT INTO content (id, title, duration, vd_addr,state)
+        VALUES (null, #{title}, #{duration}, #{vdAddr},0)
+    </insert>
 </mapper>

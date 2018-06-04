@@ -66,6 +66,7 @@ public class DataController {
     @ResponseBody
     public ArrayList<bounceRate> getBounceRate(){
         ArrayList<bounceRate> list = dataService.getBounceRate();
+        System.out.println(list);
         return list;
     }
 

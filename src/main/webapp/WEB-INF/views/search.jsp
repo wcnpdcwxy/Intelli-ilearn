@@ -50,11 +50,9 @@
 	    		<!--搜索栏-->
 	    		<div style="height: 40px;">
                     <center>
-                        <form>
+                        <form action="doSearch" method="get">
                             <input type="text" name="searchContent" id="searchContent" value="${searchContent}" style="height: 40px;width: 500px;"/>
-                            <!--保存（request？session）一个字符串（搜索内容）数据-->
-                            <!--提交异步请求1-->
-                            <button value="搜索" accesskey="Enter" onclick="" style="width: 60px;height: 40px;background-color: #00BFF0;border: none;">搜索</button>
+                            <button type="submit" value="搜索" accesskey="Enter" style="width: 60px;height: 40px;background-color: #00BFF0;border: none;">搜索</button>
                         </form>
                     </center>
 	    		</div>

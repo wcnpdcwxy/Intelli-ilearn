@@ -26,6 +26,8 @@ public class Course {
     private String type;
 //    花费积分
     private int cost;
+    //    状态
+    private int status;
 
     public int getId() {
         return id;
@@ -124,6 +126,14 @@ public class Course {
         this.cost = cost;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -139,6 +149,7 @@ public class Course {
                 ", time='" + time + '\'' +
                 ", type='" + type + '\'' +
                 ", cost=" + cost +
+                ", status=" + status +
                 '}';
     }
 }

@@ -3,6 +3,7 @@ package com.edu360.ilearn.controller;
 import com.edu360.ilearn.Vo.ContentVo;
 import com.edu360.ilearn.Vo.CourseVo;
 import com.edu360.ilearn.Vo.HistoryVo;
+import com.edu360.ilearn.entity.Content;
 import com.edu360.ilearn.entity.User;
 import com.edu360.ilearn.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,37 @@ public class ContentController {
 
         session.setAttribute("Vdetail",vdetail);
         return "course/watch";
+    }
+
+    @GetMapping("/lockContent")
+    public String lockContent(int contentId,HttpSession session){
+        Content content = new Content();
+        content.setId(contentId);
+        content.setState(1);
+
+        contentService.updateContent(content);
+        return "redirect:toContentManager";
+    }
+
+    @GetMapping("/unlockContent")
+    public String unlockContent(int contentId,HttpSession session){
+        Content content = new Content();
+        content.setId(contentId);
+        content.setState(0);
+
+        contentService.updateContent(content);
+        return "redirect:toContentManager";
+    }
+
+    @GetMapping("/updateContent")
+    public String updateContent(Content content,HttpSession session){
+        contentService.updateContent(content);
+        return "redirect:toContentManager";
+    }
+
+    @GetMapping("/insertContent")
+    public String insertContent(Content content,HttpSession session){
+        contentService.insertContent(content);
+        return "redirect:toContentManager";
     }
 }

@@ -2,6 +2,7 @@ package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Vo.ContentVo;
 import com.edu360.ilearn.Vo.HistoryVo;
+import com.edu360.ilearn.entity.Content;
 import com.edu360.ilearn.mapper.ContentMapper;
 import com.edu360.ilearn.mapper.DiscussMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,26 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public ArrayList<HistoryVo> getHistoryById(int userId) {
         return contentMapper.getHistoryById(userId);
+    }
+
+    @Override
+    public ArrayList<Content> findAllByCourseId(int courseId) {
+        return contentMapper.findAllByCourseId(courseId);
+    }
+
+    @Override
+    public void updateContent(Content content) {
+        contentMapper.updateContent(content);
+    }
+
+    @Override
+    public void updateContent2(Content content) {
+        contentMapper.updateContent2(content);
+    }
+
+    @Override
+    public void insertContent(Content content) {
+        contentMapper.insertContent(content);
     }
 
 }

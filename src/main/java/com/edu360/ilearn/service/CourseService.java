@@ -2,6 +2,7 @@ package com.edu360.ilearn.service;
 
 import com.edu360.ilearn.Vo.CourseVo;
 import com.edu360.ilearn.Vo.FavouriteVo;
+import com.edu360.ilearn.entity.Content;
 import com.edu360.ilearn.entity.Course;
 
 import java.util.ArrayList;
@@ -20,4 +21,12 @@ public interface CourseService {
     void intoFavourite(FavouriteVo favouriteVo);
 
     void outFavourite(FavouriteVo favouriteVo);
+
+    ArrayList<Course> findAll(String search);
+
+    void updateCourse(Course course);
+
+    void updateCourse2(Course course);
+
+    void insertCourse(Course course);
 }

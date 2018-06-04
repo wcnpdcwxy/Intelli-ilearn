@@ -21,4 +21,12 @@ public interface CourseMapper {
     void intoFavourite(FavouriteVo favouriteVo);
 
     void outFavourite(FavouriteVo favouriteVo);
+
+    ArrayList<Course> findAll(String search);
+
+    void updateCourse(Course course);
+
+    void updateCourse2(Course course);
+
+    void insertCourse(Course course);
 }

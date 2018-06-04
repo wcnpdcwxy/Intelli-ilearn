@@ -130,4 +130,45 @@ public class CourseController {
 
         return "redirect:toDetail";
     }
+
+    @GetMapping("/lockCourse")
+    public String lockCourse(int courseId,HttpSession session){
+        Course course = new Course();
+        course.setId(courseId);
+        course.setStatus(1);
+
+        courseService.updateCourse(course);
+        return "redirect:toCourseManager";
+    }
+
+    @GetMapping("/unlockCourse")
+    public String unlockCourse(int courseId,HttpSession session){
+        Course course = new Course();
+        course.setId(courseId);
+        course.setStatus(0);
+
+        courseService.updateCourse(course);
+        return "redirect:toCourseManager";
+    }
+
+    @GetMapping("/updateCourse")
+    public String updateCourse(Course course,HttpSession session){
+        course.setTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
+        courseService.updateCourse2(course);
+        return "redirect:toCourseManager";
+    }
+
+    @GetMapping("/insertCourse")
+    public String insertCourse(Course course,HttpSession session){
+        User user = (User) session.getAttribute("user");
+
+        course.setUserId(user.getId());
+        course.setUserNickName(user.getNickName());
+        course.setMark(((int)Math.random()*4)+1);
+        course.setTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
+        courseService.insertCourse(course);
+        return "redirect:toCourseManager";
+    }
 }

@@ -86,8 +86,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<User> findAll() {
-        return userMapper.findAll();
+    public ArrayList<User> findAllByStatus(int num) {
+        return userMapper.findAllByStatus(num);
+    }
+
+    @Override
+    public ArrayList<User> findAll(String search) {
+        return userMapper.findAll(search);
     }
 
     @Override

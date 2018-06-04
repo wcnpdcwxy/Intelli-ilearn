@@ -97,11 +97,11 @@
 
 
         <!--导航-->
-        <iframe allowtransparency=true id="top" name="top" src="toTop" width="100%" height="100px" scrolling="no" frameborder="5"></iframe>
+        <iframe allowtransparency=true id="top" name="top" src="toTop" width="100%" height="100px" scrolling="no" frameborder="0"></iframe>
         <!--首页-->
-        <iframe allowtransparency=true id="showPage" name="home" src="toHome" width="100%" height="1000px" scrolling="no" frameborder="5"></iframe>
+        <iframe allowtransparency=true id="showPage" name="home" src="toHome" width="100%" height="1000px" scrolling="no" frameborder="0"></iframe>
         <%--底部--%>
-        <iframe allowtransparency=true id="bottom" src="toBottom" width="100%" scrolling="no" height="320px" frameborder="5"></iframe>
+        <iframe allowtransparency=true id="bottom" src="toBottom" width="100%" scrolling="no" height="320px" frameborder="0"></iframe>
 
 
     </body>

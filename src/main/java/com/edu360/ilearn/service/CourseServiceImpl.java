@@ -52,5 +52,25 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.outFavourite(favouriteVo);
     }
 
+    @Override
+    public ArrayList<Course> findAll(String search) {
+        return courseMapper.findAll(search);
+    }
+
+    @Override
+    public void updateCourse(Course course) {
+        courseMapper.updateCourse(course);
+    }
+
+    @Override
+    public void updateCourse2(Course course) {
+        courseMapper.updateCourse2(course);
+    }
+
+    @Override
+    public void insertCourse(Course course) {
+        courseMapper.insertCourse(course);
+    }
+
 }
 

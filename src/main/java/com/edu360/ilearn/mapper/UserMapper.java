@@ -20,7 +20,9 @@ public interface UserMapper {
 
     User findinfo(int userId);
 
-    ArrayList<User> findAll();
+    ArrayList<User> findAll(String search);
+
+    ArrayList<User> findAllByStatus(int num);
 
     void updateUser(User user);
 
@@ -33,4 +35,5 @@ public interface UserMapper {
     void addOrder(OrderVo orderVo);
 
     void editinfo(User user);
+
 }

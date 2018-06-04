@@ -7,8 +7,6 @@
 	pageContext.setAttribute("ctx", path);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>
-
 	<head>
 		<title>Home</title>
 		<link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,10 +25,10 @@
         <script src="../../../js/echarts.min.js"></script>
 	</head>
 
-	<body style="background-color: white;">
+	<body style="background-color: antiquewhite;">
 		<!-- Container (notice the relative width) :  -->
-		<div class="container">
-			<div id="left" style="width: 15%; height: 760px; background: whitesmoke; margin:auto; float:left;padding-top: 10%">
+		<div class="container" style="background-color: white;">
+			<div id="left" style="width: 14%; height: 760px; background: whitesmoke; margin:auto; float:left;padding-top: 10%">
 				<div style="width: 94%; height: 70%; margin-left: 2%;">
 					<a onclick="doPnum()">
 						<div id="tab1" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">活跃留存堆叠图</div>
@@ -42,10 +40,10 @@
 						<div id="tab3" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">网页跳转表</div>
 					</a>
                     <a>
-                        <div id="tab4" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">产品方法论</div>
+                        <div id="tab4" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">预测（未完成）</div>
                     </a>
                     <a>
-                        <div id="tab5" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">六一专题</div>
+                        <div id="tab5" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">实时分析（未完成）</div>
                     </a>
 				</div>
 			</div>
@@ -134,8 +132,8 @@
                         data: data[i].ints
                     });
 //                mapOnlyValue.push(data[i].ints);
-                    topic = '活跃留存堆积图';
                 }
+                topic = '活跃留存堆积图';
                 console.log(mapOnlyKey1);
                 console.log(series);
 
@@ -193,8 +191,8 @@
 //                    "name" : data[i].date
 //                });
                     mapOnlyValue.push(data[i].rate);
-                    topic = '弹出率折线图';
                 }
+                topic = '弹出率折线图';
                 series.push({
                     data: mapOnlyValue,
                     type: 'line',
@@ -243,5 +241,6 @@
             window.document.getElementById(ch).style.backgroundColor="white";
             window.document.getElementById(ch).style.borderLeftColor="red";
         }
+        doPnum()
     </script>
 </html>
