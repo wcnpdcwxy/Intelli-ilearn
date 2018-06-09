@@ -39,11 +39,11 @@
 					<a onclick="doPathTable()">
 						<div id="tab3" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">网页跳转表</div>
 					</a>
-                    <a>
-                        <div id="tab4" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">预测（未完成）</div>
+                    <a onclick="doCluster()">
+                        <div id="tab4" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">聚类（报表）</div>
                     </a>
-                    <a>
-                        <div id="tab5" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">实时分析（未完成）</div>
+                    <a onclick="doPie()">
+                        <div id="tab5" style="border-bottom: groove;border-bottom-color: #00BFF0;height: 20%;width: 100%;color: limegreen;text-align: center;padding-top: 13%;">聚类（饼状图）</div>
                     </a>
 				</div>
 			</div>
@@ -220,6 +220,105 @@
             window.document.getElementById('mainn').style.display="block";
             window.document.getElementById('mainn').src="getPathTable";
             changecolor('tab3');
+        }
+        function doCluster() {
+//            myChart.dispose();
+            window.document.getElementById('main').style.display="none";
+            window.document.getElementById('mainn').style.display="block";
+            window.document.getElementById('mainn').src="getCluster";
+            changecolor('tab4');
+        }
+        function doPie() {
+            changecolor('tab2');
+            window.document.getElementById('main').style.display="block";
+            window.document.getElementById('mainn').style.display="none";
+            option = {
+                backgroundColor: '#2c343c',
+
+                title: {
+                    text: [],
+                    left: 'center',
+                    top: 20,
+                    textStyle: {
+                        color: '#ccc'
+                    }
+                },
+
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+
+                visualMap: {
+                    show: false,
+                    min: 5,
+                    max: 800,
+                    inRange: {
+                        colorLightness: [0, 16]
+                    }
+                },
+                series : [
+                    {
+                        name:'用户类型',
+                        type:'pie',
+                        radius : '70%',
+                        center: ['50%', '50%'],
+                        data:[],
+                        roseType: 'radius',
+                        label: {
+                            normal: {
+                                textStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                lineStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                },
+                                smooth: 0.2,
+                                length: 10,
+                                length2: 20
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#ff130a',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        },
+                    }
+                ]
+            };
+            // 基于准备好的dom，初始化echarts实例
+            myChart = echarts.init(document.getElementById('main'));
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+            $.post("/getPie","pie", function(data) {
+                var mapKeyValue = [];
+                mapKeyValue.length = 0;
+                for ( var i = 0; i < data.length; i++) {
+                    mapKeyValue.push({
+                        "name" : data[i].type,
+                        "value" : data[i].rate
+                    });
+                }
+                topic = '饼状图';
+
+                console.log(mapKeyValue);
+                // 填入数据
+                myChart.setOption({
+                    series : [{
+                        data:mapKeyValue.sort(function (a, b) { return a.value - b.value; })
+                    }],
+                    title: {
+                        text: topic,
+                    },
+                });
+                // 使用刚指定的配置项和数据显示图表。
+            }, 'json');
         }
         function changecolor(ch) {
             window.document.getElementById('tab1').style.backgroundColor="whitesmoke";

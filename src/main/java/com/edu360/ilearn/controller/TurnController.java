@@ -106,6 +106,18 @@ public class TurnController {
         return "common/table";
     }
 
+    @RequestMapping("/toCluster")
+    public String toCluster(Integer pageNum, HttpSession session){
+
+        if(pageNum!=null){
+            PageVo pVo = (PageVo) session.getAttribute("ClusterpVo");
+            pVo.setNow_page(pageNum);
+            session.setAttribute("ClusterpVo",pVo);
+        }
+
+        return "common/cluster";
+    }
+
     @RequestMapping("/toIntro")
     public String toIntro() {
         return "content/intro";

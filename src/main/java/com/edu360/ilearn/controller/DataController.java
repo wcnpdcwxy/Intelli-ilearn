@@ -1,6 +1,8 @@
 package com.edu360.ilearn.controller;
 
+import com.edu360.ilearn.Tool.Cluster;
 import com.edu360.ilearn.Vo.PageVo;
+import com.edu360.ilearn.Vo.PieVo;
 import com.edu360.ilearn.entity.bounceRate;
 import com.edu360.ilearn.entity.pNum;
 import com.edu360.ilearn.entity.pathTable;
@@ -70,10 +72,48 @@ public class DataController {
         return list;
     }
 
+    @PostMapping("/getPie")
+    @ResponseBody
+    public ArrayList<PieVo> getPie(HttpSession session){
+        ArrayList clusterList = (ArrayList) session.getAttribute("clusterList");
+        if(clusterList==null){
+            clusterList = Cluster.getList();
+            session.setAttribute("clusterList",clusterList);
+        }
+
+        ArrayList list = clusterList;
+        List sublist = list.subList(list.size() - 4, list.size());
+
+        ArrayList<PieVo> pieList = new ArrayList<>();
+        for(int i = 0;i<sublist.size();i++){
+            String s = sublist.get(i).toString();
+            String[] split = s.split(",");
+
+            String type = split[0];
+            if(type.equals("1")){
+                type="忠实的学习者";
+            }else if(type.equals("2")){
+                type="心动没有行动的浪子";
+            }else if(type.equals("3")){
+                type="缺乏耐心的学习者";
+            }else if(type.equals("4")){
+                type="有规划的自学者";
+            }
+            int rate = Integer.parseInt(split[1]);
+
+            PieVo pieVo = new PieVo();
+            pieVo.setType(type);
+            pieVo.setRate(rate);
+            pieList.add(pieVo);
+        }
+        System.out.println("pieList"+pieList);
+        return pieList;
+    }
+
     //获取pnum信息
     @GetMapping("/getPathTable")
     public String getPathTable(Integer pageNum, HttpSession session){
-        session.removeAttribute("pVo");
+        session.removeAttribute("PathTablepVo");
 
         ArrayList<pathTable> list = dataService.getPathTable("05_06");
         PageVo pVo = new PageVo();
@@ -82,9 +122,33 @@ public class DataController {
             pVo.setTotal_data_num(list.size());
             pVo.setPage_data_num(9);
             pVo.setShow_page_Num(7);
+
         }
-        session.setAttribute("pVo",pVo);
+        session.setAttribute("PathTablepVo",pVo);
 
         return "redirect:toTable";
+    }
+
+    @GetMapping("/getCluster")
+    public String getCluster(Integer pageNum, HttpSession session){
+        session.removeAttribute("ClusterpVo");
+
+        ArrayList clusterList = (ArrayList) session.getAttribute("clusterList");
+        if(clusterList==null){
+            clusterList = Cluster.getList();
+            session.setAttribute("clusterList",clusterList);
+        }
+
+        ArrayList list = clusterList;
+        List sublist = list.subList(0, list.size() - 4);
+        PageVo pVo = new PageVo();
+        if(sublist!=null){
+            pVo.setTotalList(sublist);
+            pVo.setTotal_data_num(sublist.size());
+            pVo.setPage_data_num(16);
+        }
+        session.setAttribute("ClusterpVo",pVo);
+
+        return "redirect:toCluster";
     }
 }

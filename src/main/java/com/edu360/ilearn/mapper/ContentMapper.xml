@@ -51,7 +51,7 @@
         UPDATE content SET title = #{title},duration = #{duration},vd_addr = #{vdAddr} WHERE id = #{id}
     </update>
 
-    <insert id="insertContent" parameterType="com.edu360.ilearn.Vo.Content">
+    <insert id="insertContent" parameterType="com.edu360.ilearn.entity.Content">
         INSERT INTO content (id, title, duration, vd_addr,state)
         VALUES (null, #{title}, #{duration}, #{vdAddr},0)
     </insert>

@@ -57,7 +57,7 @@
         UPDATE course SET course_name = #{courseName},type = #{type},intro1 = #{intro1},intro2 = #{intro2},intro3 = #{intro3},cost = #{cost} WHERE id = #{id}
     </update>
 
-    <insert id="insertCourse" parameterType="com.edu360.ilearn.Vo.Course">
+    <insert id="insertCourse" parameterType="com.edu360.ilearn.entity.Course">
         INSERT INTO course (id, course_name, user_id, user_nickName,intro1,intro2,intro3,mark,time,type,cost,status)
                     VALUES (null, #{courseName}, #{userId}, #{userNickName},#{intro1}, #{intro2}, #{intro3},#{mark}, #{time}, #{cost},0)
     </insert>
