@@ -124,9 +124,10 @@
                 <%--<h4 class="modal-title" id="myModalLabel">更新添加</h4>--%>
             </div>
             <div class="modal-body">
-                <form name="IUAction" id="IUAction" action="/insertCourse" method="post">
+                <form name="IUAction" id="IUAction" action="/insertCourse" method="get">
                     <div style="padding-left: 110px;">
                         <table>
+                            <input type="text" name="id" id="id" value="" hidden>
                             课程名:<br/><input type="text" id="courseName" name="courseName" style="width: 60%"><br/>
                             分类:<br/><input type="text" id="type" name="type"><br/>
                             适用人群介绍:<br/><textarea id="intro1" name="intro1" cols="45" rows="3"></textarea><br/>
@@ -153,6 +154,7 @@
             data:{count:count},
             success : function(data) {
                 if(data!=null){
+                    document.getElementById("id").value=data.id;
                     document.getElementById("courseName").value=data.courseName;
                     document.getElementById("type").value=data.type;
                     document.getElementById("intro1").value=data.intro1;
@@ -167,6 +169,7 @@
         })
     }
     function toInsert() {
+        document.getElementById("id").value=null;
         document.getElementById("courseName").value="";
         document.getElementById("type").value="";
         document.getElementById("intro1").value="";

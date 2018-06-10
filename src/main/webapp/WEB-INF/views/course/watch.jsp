@@ -17,7 +17,7 @@
 			<!--视频播放-->
 			<div style="background-color: black">
                 <%--${Vdetail.content.vdAddr}--%>
-				<video src="${Vdetail.content.vdAddr}${Vdetail.content.id}.mp4" autoplay="autoplay" controls="controls" width="100%" height="600px">
+				<video src="${Vdetail.content.vdAddr}" autoplay="autoplay" controls="controls" width="100%" height="600px">
 				</video>
 			</div>
             <div style="height: 20px;background-color: antiquewhite"></div>

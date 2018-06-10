@@ -20,5 +20,5 @@ public interface ContentService {
 
     void updateContent2(Content content);
 
-    void insertContent(Content content);
+    void insertContent(String courseId,Content content);
 }

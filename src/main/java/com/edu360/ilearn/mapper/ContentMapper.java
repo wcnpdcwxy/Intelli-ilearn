@@ -3,7 +3,9 @@ package com.edu360.ilearn.mapper;
 import com.edu360.ilearn.Vo.HistoryVo;
 import com.edu360.ilearn.entity.Content;
 import com.edu360.ilearn.entity.Course;
+import com.edu360.ilearn.entity.CourseContent;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 
@@ -24,4 +26,6 @@ public interface ContentMapper {
     void updateContent2(Content content);
 
     void insertContent(Content content);
+
+    void connectTwo(CourseContent cc);
 }

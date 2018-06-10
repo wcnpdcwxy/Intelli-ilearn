@@ -258,12 +258,14 @@ public class TurnController {
     }
 
     @RequestMapping("/toContentManager")
-    public String toContentManager(int courseId,Integer pageNum,HttpSession session) {
-        if(pageNum!=null){
-            PageVo pVo = (PageVo) session.getAttribute("ContentpVo");
-            System.out.println("pagenum:"+pageNum);
-            pVo.setNow_page(pageNum);
-            session.setAttribute("ContentpVo",pVo);
+    public String toContentManager(Integer courseId,Integer pageNum,HttpSession session) {
+        if(courseId==null){
+            if(pageNum!=null){
+                PageVo pVo = (PageVo) session.getAttribute("ContentpVo");
+                System.out.println("pagenum:"+pageNum);
+                pVo.setNow_page(pageNum);
+                session.setAttribute("ContentpVo",pVo);
+            }
         }else {
             ArrayList<Content> contentlist = contentService.findAllByCourseId(courseId);
             PageVo pVo = new PageVo();
@@ -273,6 +275,7 @@ public class TurnController {
                 pVo.setPage_data_num(8);
             }
             session.setAttribute("ContentpVo", pVo);
+            session.setAttribute("InsCourseId", courseId);
         }
         return "myInfo/contentManager";
     }

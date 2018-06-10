@@ -51,8 +51,12 @@
         UPDATE content SET title = #{title},duration = #{duration},vd_addr = #{vdAddr} WHERE id = #{id}
     </update>
 
-    <insert id="insertContent" parameterType="com.edu360.ilearn.entity.Content">
+    <insert id="insertContent" parameterType="com.edu360.ilearn.entity.Content" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO content (id, title, duration, vd_addr,state)
         VALUES (null, #{title}, #{duration}, #{vdAddr},0)
+    </insert>
+    <insert id="connectTwo" parameterType="com.edu360.ilearn.entity.CourseContent">
+        INSERT INTO course_content (id, course_id, content_id)
+        VALUES (null, #{courseId}, #{contentId})
     </insert>
 </mapper>

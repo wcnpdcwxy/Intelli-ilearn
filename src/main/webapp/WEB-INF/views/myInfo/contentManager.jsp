@@ -32,6 +32,7 @@
         <th>标题</th>
         <th>时长</th>
         <th>视频路径</th>
+        <th>状态</th>
         <th>操作</th>
         <th><a href="javascript:;" onclick="toInsert()">添加</a></th>
     </tr>
@@ -111,13 +112,15 @@
                 <%--<h4 class="modal-title" id="myModalLabel">更新添加</h4>--%>
             </div>
             <div class="modal-body">
-                <form name="IUAction" id="IUAction" action="/insertContent" method="post">
+                <form name="IUAction" id="IUAction" action="/insertContent" method="post" enctype="multipart/form-data" >
                     <div style="padding-left: 110px;">
                         <table>
-                            <input type="text" name="courseId" id="courseId" value="${courseId}" hidden>
+                            <input type="text" name="courseId" id="courseId" value="${InsCourseId}" hidden>
+                            <input type="text" name="id" id="id" value="" hidden>
+                            <input type="text" name="vdAddr" id="vdAddr" value="" hidden>
                             标题:<br/><input type="text" id="title" name="title" style="width: 60%"><br/>
                             时长:<br/><input type="text" id="duration" name="duration"><br/>
-                            视频路径:<br/><input type=""><br/>
+                            视频路径:<br/><input type="file" name="file" id="button" value="选择上传" />
                         </table>
                     </div>
                 </form>
@@ -138,9 +141,10 @@
             data:{count:count},
             success : function(data) {
                 if(data!=null){
-                    document.getElementById("title").value=data.courseName;
-                    document.getElementById("duration").value=data.type;
-//                    document.getElementById("intro1").value=data.intro1;
+                    document.getElementById("title").value=data.title;
+                    document.getElementById("duration").value=data.duration;
+                    document.getElementById("id").value=data.id;
+                    document.getElementById("vdAddr").value=data.vdAddr;
 
                     document.getElementById("IUAction").action="/updateContent";
                     $('#myModal').modal('show');
@@ -152,7 +156,7 @@
     function toInsert() {
         document.getElementById("title").value="";
         document.getElementById("duration").value="";
-//        document.getElementById("intro1").value="";
+        document.getElementById("id").value=null;
 
         document.getElementById("IUAction").action="/insertContent"
         $('#myModal').modal('show');
