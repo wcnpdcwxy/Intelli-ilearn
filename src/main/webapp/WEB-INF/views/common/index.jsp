@@ -8,12 +8,12 @@
         <title>首页</title>
 
         <script src="../../../js/jquery.min.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
-        <script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.core.js"></script>
-        <script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.dialog.js"></script>
-        <link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />
+        <script src="../../../js/ui/jquery-ui.js"></script>
+        <link rel="stylesheet" href="../../../css/ui/jquery-ui.css">
+        <link rel="stylesheet" href="../../../css/ui/style.css">
+        <%--<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.core.js"></script>--%>
+        <%--<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.dialog.js"></script>--%>
+        <%--<link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />--%>
 
         <script type="text/javascript">
             jQuery(function() {
@@ -99,7 +99,7 @@
         <!--导航-->
         <iframe allowtransparency=true id="top" name="top" src="toTop" width="100%" height="100px" scrolling="no" frameborder="0"></iframe>
         <!--首页-->
-        <iframe allowtransparency=true id="showPage" name="home" src="toHome" width="100%" height="1000px" scrolling="no" frameborder="0"></iframe>
+        <iframe allowtransparency=true id="showPage" name="home" src="toHome" width="100%" height="800px" scrolling="no" frameborder="0"></iframe>
         <%--底部--%>
         <iframe allowtransparency=true id="bottom" src="toBottom" width="100%" scrolling="no" height="320px" frameborder="0"></iframe>
 

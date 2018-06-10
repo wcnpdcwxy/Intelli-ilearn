@@ -65,6 +65,7 @@
 <%--分页--%>
 <center>
     <div style="height: 8%">
+        <button class="corner"><a href="toCourseManager">返回课程</a></button>
         <button class="corner"><a href="javascript:go(<%=contentpVo.getNow_page()-1%>)">上一页</a></button>
         <%
             int se[] = contentpVo.getStart_end();

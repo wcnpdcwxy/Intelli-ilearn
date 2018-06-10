@@ -153,13 +153,19 @@ public class TurnController {
 
     @RequestMapping("/toMyInfo")
     public String toMyInfo(HttpSession session) {
-
         User user = (User) session.getAttribute("user");
-        ArrayList<HistoryVo> historylist = contentService.getHistoryById(user.getId());
 
-        session.setAttribute("historylist", historylist);
+        if(user.getStage()==0) {
+            ArrayList<HistoryVo> historylist = contentService.getHistoryById(user.getId());
 
-        return "myInfo/MyInfo";
+            session.setAttribute("historylist", historylist);
+
+            return "myInfo/MyInfo";
+        }else if(user.getStage()==1){
+            return "myInfo/MyManager";
+        }else{
+            return "toIndex";
+        }
     }
 
     @RequestMapping("/toFavinfo")

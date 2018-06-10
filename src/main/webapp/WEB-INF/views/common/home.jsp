@@ -4,8 +4,6 @@
 	pageContext.setAttribute("ctx", path);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>
-
 	<head>
 		<title>Home</title>
 		<link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -17,6 +15,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!--theme-style-->
 		<link href="../../../css/style4.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../../css/jquery.raty.css" rel="stylesheet" type="text/css" media="all" />
 		<!--//theme-style-->
 		<script src="../../../js/jquery.min.js"></script>
 		<!---//End-rate---->
@@ -24,6 +23,7 @@
 		<script src="../../../js/jquery.chocolat.js"></script>
 		<link rel="stylesheet" href="../../../css/chocolat.css" type="text/css" media="screen" charset="utf-8">
 		<!--light-box-files -->
+        <script src="../../js/jquery.raty.js"></script>
 	</head>
 	<body style="background-color: antiquewhite;">
 		<!-- Container (notice the relative width) :  -->
@@ -59,6 +59,94 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
+			<div style="height: 20px;width: 100%;background-color: antiquewhite;"></div>
+			<div style="height: 350px;width:100%;background-color: floralwhite;">
+                <div style="height: 40px;width: 100%;padding-top: 8px;padding-left: 15px;background-color: ghostwhite;">
+                    <h4>精品好课</h4>
+                </div>
+                <div style="height: 271px;margin-top: 18px;width: 100%;">
+                    <div style="width: 16%;height: 271px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                        <div style="width: 100%;height: 40%">
+                            <img src="../../images/course1.jpg" height="" width="100%"/>
+                        </div>
+                        <div style="width: 100%;height: 60%; padding: 10px;">
+                            <div style="width: 100%;height: 40%;margin-top: 8px">
+                                <h5>轻松玩转Python开发基础入门</h5>
+                                <h6>wh</h6>
+                            </div>
+                            <div style="width: 100%;height: 60%;padding-top: 5px">
+                                <div>
+                                    <h5>2积分</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 16%;height: 271px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                        <div style="width: 100%;height: 40%">
+                            <img src="../../images/course3.jpg" height="" width="100%"/>
+                        </div>
+                        <div style="width: 100%;height: 60%; padding: 10px;">
+                            <div style="width: 100%;height: 40%;margin-top: 8px">
+                                <h5>大学计算机—计算思维导论CAP</h5>
+                                <h6>wh</h6>
+                            </div>
+                            <div style="width: 100%;height: 60%;padding-top: 5px">
+                                <div>
+                                    <h5>5积分</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 16%;height: 271px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                        <div style="width: 100%;height: 40%">
+                            <img src="../../images/course4.jpg" height="" width="100%"/>
+                        </div>
+                        <div style="width: 100%;height: 60%; padding: 10px;">
+                            <div style="width: 100%;height: 40%;margin-top: 8px">
+                                <h5>管理学</h5>
+                                <h6>wh</h6>
+                            </div>
+                            <div style="width: 100%;height: 60%;padding-top: 5px">
+                                <div>
+                                    <h5>3积分</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 16%;height: 271px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                        <div style="width: 100%;height: 40%">
+                            <img src="../../images/course5.jpg" height="" width="100%"/>
+                        </div>
+                        <div style="width: 100%;height: 60%; padding: 10px;">
+                            <div style="width: 100%;height: 40%;margin-top: 8px">
+                                <h5>行为经济学</h5>
+                                <h6>wh</h6>
+                            </div>
+                            <div style="width: 100%;height: 60%;padding-top: 5px">
+                                <div>
+                                    <h5>5积分</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 16%;height: 271px;margin-left: 2%;margin-right: 2%;background-color: white;float: left">
+                        <div style="width: 100%;height: 40%">
+                            <img src="../../images/course6.png" height="" width="100%"/>
+                        </div>
+                        <div style="width: 100%;height: 60%; padding: 10px;">
+                            <div style="width: 100%;height: 40%;margin-top: 8px">
+                                <h5>金融风险管理</h5>
+                                <h6>wh</h6>
+                            </div>
+                            <div style="width: 100%;height: 60%;padding-top: 5px">
+                                <div>
+                                    <h5>5积分</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 		<script>
 			$(document).ready(function() {

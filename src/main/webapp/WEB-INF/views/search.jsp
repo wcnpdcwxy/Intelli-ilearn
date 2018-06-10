@@ -99,7 +99,7 @@
                                                 <h5>免费</h5>
                                             </c:if>
                                             <c:if test="${course.cost!=0}">
-                                                <h5>¥ ${course.cost}</h5>
+                                                <h5>${course.cost}积分</h5>
                                             </c:if>
                                         </div>
                                     </div>
